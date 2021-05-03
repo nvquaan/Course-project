@@ -9,7 +9,7 @@ export class CoursesService extends  ApiService{
 
   //Lấy các khoá học
   public getAllCourses(params?: any){
-    return this.get(this.apiURL + '/me/stored/courses', params);
+    return this.get(this.apiURL + '/courses', params);
   }
   //Lấy các khoá học đã xoá
   public getAllDeletedCourses(params?: any){
@@ -22,6 +22,6 @@ export class CoursesService extends  ApiService{
 
 // Lấy các danh mục khoá học
   public getAllCategories(params?: any){
-    return this.get(this.apiURL + '/me/stored/categories', params);
+    return this.get(this.apiURL + '/categories', params);
   }
 }

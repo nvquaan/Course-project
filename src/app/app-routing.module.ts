@@ -16,7 +16,9 @@ const routes: Routes = [
   {
     path: 'movies/:id', loadChildren: () => import('./components/movie-details/movie-details.module').then(mod => mod.MovieDetailsModule)
   },
-
+  {
+    path: 'courses/:slug', loadChildren: () => import('./components/course-details/course-details.module').then(mod => mod.CourseDetailsModule)
+  },
   {
     path: 'tv',
     loadChildren: () => import('./components/tv-shows/tv-shows.module').then(mod => mod.TvShowsModule)

@@ -4,26 +4,26 @@
 
 <div class="listing">
     <div class="listing__head">
-        <h3 class="listing__title">Trending Movies</h3>
+        <h3 class="listing__title">Danh sách chủ đề</h3>
         <a [routerLink]="['/movies']" routerLinkActive="router-link-active" class="listing__explore">
-            <strong>Explore All</strong>
+            <strong>Xem tất cả</strong>
         </a>
     </div>
     
     <app-skeleton *ngIf="loader" ></app-skeleton>
-    <p-carousel [value]="nowPlaying" [numVisible]="6" [numScroll]="4" [circular]="false" *ngIf="!loader"
+    <p-carousel [value]="listCategories" [numVisible]="4" [numScroll]="1" [circular]="false" *ngIf="!loader"
         [responsiveOptions]="responsiveOptions">
-        <ng-template let-movie pTemplate="item">
-            <div class="listing-item-style" [routerLink]="['/movies/', movie.id]">
+        <ng-template let-category pTemplate="item">
+            <div class="listing-item-style" [routerLink]="['/categories/', category.slug]">
                 <div class="overlay">
-                    <div class="hover"><i class="material-icons">play_arrow</i> PLAY NOW</div>
+                    <div class="hover"><i class="material-icons">play_arrow</i> XEM NGAY</div>
                 </div>
-                <img *ngIf="movie?.poster_path"
-                    src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{movie?.poster_path}}">
-                <img *ngIf="!movie?.poster_path" src="assets/images/default-movie.png">
-                <h6>{{ movie?.title }}</h6>
-                <p class="rate"><i class="material-icons">star</i><span>{{movie?.vote_average}}</span> /10</p>
-                <p class="year"><span>{{movie?.release_date | date: 'yyyy'}}</span>
+                <img *ngIf="category?.imageUrl"
+                    [src]="category.imageUrl">
+                <img *ngIf="!category?.imageUrl" src="assets/images/default-movie.png">
+                <h6>{{ category?.name }}</h6>
+                <p class="rate"><i class="material-icons">star</i><span>{{category?.vote_average}}</span> /10</p>
+                <p class="year"><span>{{category?.release_date | date: 'yyyy'}}</span>
                 </p>
             </div>
         </ng-template>
@@ -32,23 +32,23 @@
 
 <div class="listing">
     <div class="listing__head">
-        <h3 class="listing__title">Trending TV Shows</h3>
+        <h3 class="listing__title">Khoá học đang HOT</h3>
         <a [routerLink]="['/tv']" routerLinkActive="router-link-active" class="listing__explore">
-            <strong>Explore All</strong>
+            <strong>Xem tất cả</strong>
         </a>
     </div>
     <app-skeleton *ngIf="loader"></app-skeleton>
-    <p-carousel [value]="tvShows" [numVisible]="6" [numScroll]="4" [circular]="false" *ngIf="!loader"
+    <p-carousel [value]="listHotCourses" [numVisible]="4" [numScroll]="1" [circular]="false" *ngIf="!loader"
         [responsiveOptions]="responsiveOptions">
-        <ng-template let-tv pTemplate="item">
-            <div class="listing-item-style" [routerLink]="['/tv/', tv.id]">
+        <ng-template let-course pTemplate="item">
+            <div class="listing-item-style" [routerLink]="['/tv/', course._id]">
                 <div class="overlay">
-                    <div class="hover"><i class="material-icons">play_arrow</i> PLAY NOW</div>
+                    <div class="hover"><i class="material-icons">play_arrow</i> XEM NGAY</div>
                 </div>
-                <img src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{tv?.poster_path}}">
-                <h6>{{ tv?.original_name }}</h6>
-                <p class="rate"><i class="material-icons">star</i><span>{{tv?.vote_average}}</span>/10</p>
-                <p class="year"><span>{{tv?.first_air_date | date: 'yyyy'}}</span>
+                <img [src]="course.imageUrl">
+                <h6>{{ course?.name }}</h6>
+                <p class="rate"><i class="material-icons">star</i><span>{{course?.vote_average}}</span>/10</p>
+                <p class="year"><span>{{course?.first_air_date | date: 'yyyy'}}</span>
             </div>
         </ng-template>
     </p-carousel>

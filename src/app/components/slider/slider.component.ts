@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, animate, style, state } from '@angular/animations';
 import { MoviesService } from 'src/app/service/movies.service';
+import { CoursesService } from 'src/app/service/courses.service';
 import { delay } from 'rxjs/internal/operators/delay';
 
 @Component({
@@ -24,10 +25,12 @@ export class SliderComponent implements OnInit {
 
   constructor(
     private movieService: MoviesService,
+    private courseSV: CoursesService,
   ) { }
 
   ngOnInit() {
     this.getnowPlayingMovies(1);
+    this.getAllHotCourses();
     this.sliderTimer();
   }
 
@@ -37,9 +40,15 @@ export class SliderComponent implements OnInit {
     });
   }
 
+  courses_data;
+  getAllHotCourses(){
+      this.courseSV.getAllCourses().subscribe((res: any) => {
+          this.courses_data = res.data;
+      })
+  }
   sliderTimer() {
     setInterval(() => {
-      this.current = ++this.current % this.movies_data.length;
+      this.current = ++this.current % this.courses_data.length;
     }, 5000);
   }
 
