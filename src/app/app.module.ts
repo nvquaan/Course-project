@@ -41,7 +41,7 @@ import { ToastrModule } from 'ngx-toastr';
         MatProgressBarModule,
         SkeletonModule,
         ToastrModule.forRoot({
-            timeOut: 2000,
+            timeOut: 1500,
             positionClass: 'toast-bottom-center',
             preventDuplicates: false,
             progressBar: true,
