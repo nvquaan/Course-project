@@ -15,33 +15,39 @@ import { PipeModule } from './pipe/pipe.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SkeletonModule } from './shared/skeleton/skeleton.module';
-
+import { ToastrModule } from 'ngx-toastr';
 
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    SliderComponent,
-    HomeComponent,
-    FooterComponent,
-  ],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        SliderComponent,
+        HomeComponent,
+        FooterComponent,
+    ],
 
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    FormsModule,
-    PipeModule,
-    CarouselModule,
-    SidebarModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    SkeletonModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        FormsModule,
+        PipeModule,
+        CarouselModule,
+        SidebarModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        SkeletonModule,
+        ToastrModule.forRoot({
+            timeOut: 2000,
+            positionClass: 'toast-bottom-center',
+            preventDuplicates: false,
+            progressBar: true,
+        }),
+    ],
 
-  bootstrap: [AppComponent]
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

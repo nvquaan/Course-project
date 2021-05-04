@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { AppMovieDialogComponent } from '../movie-details/app-movie-dialog/app-movie-dialog.component';
 import { CoursesService } from 'src/app/service/courses.service';
 import { HttpParams } from '@angular/common/http';
+import { ToastrService } from "ngx-toastr";
 
 @Component({
     selector: 'app-course-details',
@@ -31,6 +32,7 @@ export class CourseDetailsComponent implements OnInit {
         private sanitizer: DomSanitizer,
         private dialog: MatDialog,
         private courseSV: CoursesService,
+        private toastrService: ToastrService,
     ) {
         this.responsiveOptions = [
             {
@@ -78,7 +80,9 @@ export class CourseDetailsComponent implements OnInit {
         params = params.set('rate', rate+'');
 
         this.courseSV.updateCourse(this.slugCourse, params).subscribe((res: any) => {
-            console.log(res);
+            if(res.code == 200){
+                this.toastrService.success('Vote thành công 👍👍');
+            }
         })
     }
 
