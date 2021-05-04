@@ -8,8 +8,7 @@ import { MatDialogModule, MatIconModule } from '@angular/material';
 import { AppCourseDialogComponent } from './app-course-dialog/app-course-dialog.component';
 import { CarouselModule } from 'primeng/carousel';
 import { PipeModule } from 'src/app/pipe/pipe.module';
-
-
+import { NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     CourseDetailsComponent,
@@ -25,7 +24,8 @@ import { PipeModule } from 'src/app/pipe/pipe.module';
     MatTabsModule,
     MatDialogModule,
     MatIconModule,
-    CarouselModule
+    CarouselModule,
+    NgbRatingModule
   ],
 
 })

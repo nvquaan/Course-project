@@ -5,6 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
 import { AppMovieDialogComponent } from '../movie-details/app-movie-dialog/app-movie-dialog.component';
 import { CoursesService } from 'src/app/service/courses.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
     selector: 'app-course-details',
@@ -22,7 +23,7 @@ export class CourseDetailsComponent implements OnInit {
     backdrops: any = [];
     recomendMovies: any = [];
     responsiveOptions;
-
+    currentRate = 5;
 
     constructor(
         private movieService: MoviesService,
@@ -67,10 +68,20 @@ export class CourseDetailsComponent implements OnInit {
     getSingleCourse(slugCourse) {
         this.courseSV.getCourse(slugCourse).subscribe((res: any) => {
             this.course = res.data;
+            this.currentRate = res.data.rate;
             console.log('course', this.course);
         })
     }
     
+    onRateChange(rate){
+        let params:HttpParams = new HttpParams();
+        params = params.set('rate', rate+'');
+
+        this.courseSV.updateCourse(this.slugCourse, params).subscribe((res: any) => {
+            console.log(res);
+        })
+    }
+
     getSingleMoviesDetails(id) {
         this.movieService.getMovie(id).subscribe((res: any) => {
             this.movie = res;
