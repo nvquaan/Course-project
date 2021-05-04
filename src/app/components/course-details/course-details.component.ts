@@ -3,7 +3,7 @@ import { MoviesService } from 'src/app/service/movies.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
-import { AppMovieDialogComponent } from '../movie-details/app-movie-dialog/app-movie-dialog.component';
+import { AppCourseDialogComponent } from '../course-details/app-course-dialog/app-course-dialog.component';
 import { CoursesService } from 'src/app/service/courses.service';
 import { HttpParams } from '@angular/common/http';
 import { ToastrService } from "ngx-toastr";
@@ -64,6 +64,7 @@ export class CourseDetailsComponent implements OnInit {
             this.getRecomendMovie(this.id);
 
             this.getSingleCourse(this.slugCourse);
+            this.getAllLessonsOfCourse(this.slugCourse);
         });
     }
 
@@ -71,10 +72,15 @@ export class CourseDetailsComponent implements OnInit {
         this.courseSV.getCourse(slugCourse).subscribe((res: any) => {
             this.course = res.data;
             this.currentRate = res.data.rate;
-            console.log('course', this.course);
         })
     }
-    
+    lessons;
+    getAllLessonsOfCourse(slugCourse){
+        this.courseSV.getAllLessonsOfCourse(slugCourse).subscribe((res: any) => {
+            this.lessons = res.data;
+            console.log('data', res.data);
+        })
+    }
     onRateChange(rate){
         let params:HttpParams = new HttpParams();
         params = params.set('rate', rate+'');
@@ -102,11 +108,12 @@ export class CourseDetailsComponent implements OnInit {
     }
 
     openDialogMovie(video): void {
-        this.video['url'] = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + video.key + this.autoplay);
-        this.dialog.open(AppMovieDialogComponent, {
+        let a = {...video};
+        a['imageUrl'] = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + a.imageUrl + this.autoplay);
+        this.dialog.open(AppCourseDialogComponent, {
             height: '600px',
             width: '900px',
-            data: { video: this.video }
+            data: { video: a }
         });
     }
 

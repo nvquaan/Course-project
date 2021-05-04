@@ -1,6 +1,6 @@
 <div class="hero">
-    <div class="backdrop">
-        <div class="lazyloaded">
+    <div class="backdrop" [style.background-image]="'url(' + course?.imageUrl + ')'">
+        <!-- <div class="lazyloaded">
             <button class="play" type="button" (click)="openDialogMovie(this.video)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55">
                     <circle cx="27.5" cy="27.5" r="26.75" fill="none" stroke="#fff" stroke-linecap="round"
@@ -10,7 +10,8 @@
                 </svg>
             </button>
             <img class="lazyload image" [src]="course?.imageUrl">
-        </div>
+        </div> -->
+
     </div>
     <div class="pane">
         <div>
@@ -39,7 +40,7 @@
     <div class="row">
         <div class="col-md-12">
             <mat-tab-group class="mt-5 mb-5" mat-align-tabs="center" animationDuration="0ms">
-                <mat-tab label="Overview">
+                <mat-tab label="Tổng quan">
                     <div class="listing-space info__movies">
                         <div class="left">
                             <div class="poster">
@@ -122,7 +123,7 @@
 
                     <div class="listing-space">
                         <div class="listing__head">
-                            <h2 class="listing__title">Cast</h2>
+                            <h2 class="listing__title">Giảng viên</h2>
                         </div>
                         <p-carousel [value]="casts" [numVisible]="6" [numScroll]="4" [circular]="false"
                             [responsiveOptions]="responsiveOptions">
@@ -141,14 +142,14 @@
                     </div>
 
                 </mat-tab>
-                <mat-tab label="Videos">
+                <mat-tab label="Bài học">
                     <div class="listing-space videos__status">
                         <div class="items">
-                            <div class="item" *ngFor="let list of relatedvideo">
+                            <div class="item" *ngFor="let list of lessons; let index = index">
                                 <div (click)="openDialogMovie(list)" class="link">
                                     <div class="image lazyloaded">
                                         <img class="lazyload"
-                                            src="https://img.youtube.com/vi/{{list?.key}}/mqdefault.jpg">
+                                            src="https://img.youtube.com/vi/{{list?.imageUrl}}/mqdefault.jpg">
                                         <div class="play__icon">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
                                                 viewBox="0 0 55 55">
@@ -161,17 +162,17 @@
                                         </div>
                                     </div>
                                     <div class="name">
-                                        {{list?.name}}
+                                        {{index+1 + '. ' + list?.name}}
                                     </div>
                                     <div class="type">
-                                        {{list?.type}}
+                                        {{list?.description}}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </mat-tab>
-                <mat-tab label="Photos">
+                <mat-tab label="Hình ảnh">
                     <div class="listing-space backdrop_">
                         <div class="head">
                             <h2 class="title">Backdrops</h2>
@@ -191,7 +192,7 @@
 
             <div class="listing-space mt-20 mb-5">
                 <div class="listing__head">
-                    <h2 class="listing__title">Recommended Movies</h2>
+                    <h2 class="listing__title">Một số khoá học gợi ý</h2>
                 </div>
                 <p-carousel [value]="recomendMovies" [numVisible]="6" [numScroll]="4" [circular]="false"
                     [responsiveOptions]="responsiveOptions">

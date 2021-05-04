@@ -1,10 +1,10 @@
 <div class="hero">
     <ng-container *ngFor="let slider of courses_data; let i = index">
         <div class="slider" *ngIf="current == i" @fade>
-            <div class="backdrop">
-                <div class="lazyloaded">
+            <div class="backdrop" [style.background-image]="'url(' + slider.imageUrl + ')'">
+                <!-- <div class="lazyloaded">
                     <img alt="{{slider?.name}}" class="lazyload image" [src]="slider.imageUrl">
-                </div>
+                </div> -->
             </div>
             <div class="pane">
                 <div>
