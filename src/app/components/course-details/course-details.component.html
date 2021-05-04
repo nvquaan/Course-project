@@ -48,7 +48,7 @@
                         </div>
                         <div class="right">
                             <div class="overview">
-                                <h2 class="title">Storyline</h2>
+                                <h2 class="title">GIỚI THIỆU</h2>
                                 <div>{{course?.description}}</div>
                             </div>
                             <div class="stats">
@@ -63,51 +63,43 @@
                                     </li>
                                     <li>
                                         <div class="label">
-                                            Runtime
+                                            Tổng hời gian
                                         </div>
                                         <div class="value">
-                                            {{ movie?.runtime | time }}
+                                            {{ course?.time | time }}
                                         </div>
                                     </li>
-                                    <li *ngIf="movie?.budget">
+                                    <li>
                                         <div class="label">
-                                            Budget
+                                            Giá
                                         </div>
                                         <div class="value">
-                                            ${{ movie?.budget | numberWithCommas }}
+                                            {{ course?.cost | numberWithCommas }}vnđ
                                         </div>
                                     </li>
-                                    <li *ngIf="movie?.revenue">
+                                    <li>
                                         <div class="label">
-                                            Revenue
+                                            Số bài học
                                         </div>
                                         <div class="value">
-                                            ${{ movie?.revenue | numberWithCommas }}
+                                            {{ course?.lessonNumber }}
                                         </div>
                                     </li>
 
                                     <li *ngIf="movie?.genres.length">
                                         <div class="label">
-                                            Genre
-                                        </div>
-                                        <div class="comma_" *ngFor="let genre of movie?.genres">
-                                            <a routerLink="/genres/{{genre.id}}/{{genre.name}}">{{ genre?.name }}</a>
-                                        </div>
-                                    </li>
-                                    <li *ngIf="movie?.status">
-                                        <div class="label">
-                                            Status
+                                            Danh mục
                                         </div>
                                         <div class="value">
-                                            {{movie?.status}}
+                                            {{ course?.category.name }}
                                         </div>
                                     </li>
                                     <li *ngIf="movie?.spoken_languages?.length">
                                         <div class="label">
-                                            Language
+                                            Ngôn ngữ
                                         </div>
-                                        <div class="comma_" *ngFor="let language of movie?.spoken_languages">
-                                            <a>{{ language?.name }}</a>
+                                        <div class="value">
+                                            {{ course?.language || 'Chưa xác định' }}
                                         </div>
                                     </li>
                                     <li>
