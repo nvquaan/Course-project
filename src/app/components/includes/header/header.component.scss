@@ -136,3 +136,6 @@
   display: flex;
   background-color: #202124;
 }
+:host ::ng-deep ngb-modal-window.my-custom-class{
+    background-color: red !important;
+}

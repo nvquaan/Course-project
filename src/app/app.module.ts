@@ -16,6 +16,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SkeletonModule } from './shared/skeleton/skeleton.module';
 import { ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './components/includes/login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 
 
@@ -26,6 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
         SliderComponent,
         HomeComponent,
         FooterComponent,
+        LoginComponent,
     ],
 
     imports: [
@@ -40,6 +43,7 @@ import { ToastrModule } from 'ngx-toastr';
         MatProgressSpinnerModule,
         MatProgressBarModule,
         SkeletonModule,
+        NgbModule,
         ToastrModule.forRoot({
             timeOut: 1500,
             positionClass: 'toast-bottom-center',

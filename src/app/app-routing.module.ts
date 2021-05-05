@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/includes/login/login.component';
 
 const routes: Routes = [
   {
@@ -38,7 +39,10 @@ const routes: Routes = [
     path: 'genres',
     loadChildren: () => import('./components/genre-list/genre-list.module').then(mod => mod.GenreListModule)
   },
-
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
   {
     path: 'person/:id',
     loadChildren: () => import('./components/person/person.module').then(mod => mod.PersonModule)
