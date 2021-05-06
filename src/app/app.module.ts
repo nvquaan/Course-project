@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/includes/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { ReactiveFormsModule } from "@angular/forms";
+import { ApiInterceptor } from './helpers/api.interceptor ';
 
 
 
@@ -52,6 +53,12 @@ import { ReactiveFormsModule } from "@angular/forms";
             preventDuplicates: false,
             progressBar: true,
         }),
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ApiInterceptor, multi: true
+        }
     ],
     bootstrap: [AppComponent]
 })

@@ -18,7 +18,6 @@ export class AppComponent {
 
 
     constructor(private router: Router) {
-        localStorage.removeItem('x-access-token');
         router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
                 this.loading = true;

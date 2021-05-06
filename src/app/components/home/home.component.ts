@@ -39,8 +39,8 @@ export class HomeComponent implements OnInit {
         ];
     }
     ngOnInit() {
-        this.trendingMovies(1);
-        this.tvShow(1);
+        // this.trendingMovies(1);
+        // this.tvShow(1);
         this.getAllCategories();
         this.getAllHotCourses();
     }
@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit {
     getAllCategories() {
         this.courseSV.getAllCategories().subscribe(res => {
             this.listCategories = res['data'];
+            this.loader = false;
         })
     }
 
@@ -78,6 +79,7 @@ export class HomeComponent implements OnInit {
     getAllHotCourses() {
         this.courseSV.getAllCourses().subscribe(res => {
             this.listHotCourses = res['data'];
+            this.loader = false;
         })
     }
 }

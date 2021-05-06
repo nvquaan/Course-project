@@ -13,7 +13,7 @@
             <a class="nav-link" [routerLink]="['/tv']" routerLinkActive="router-link-active">Danh mục</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" (click)="openFormLogin()" routerLinkActive="router-link-active">Đăng nhập</a>
+            <a class="nav-link" (click)="onclick()" routerLinkActive="router-link-active">{{label}}</a>
         </li>
     </ul>
     <span class="sidebar-nav-btn"  pButton icon="pi pi-plus" label="Show" (click)="leftSidebar = true"><img src="assets/images/menu.svg"></span>
