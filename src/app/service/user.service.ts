@@ -11,4 +11,7 @@ export class UserService extends ApiService {
         return this.post(this.apiURL + '/auth/signin', params);
     }
 
+    public testQuyen(params?: any){
+        return this.get(this.apiURL + '/test/user', params);
+    }
 }

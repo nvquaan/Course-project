@@ -18,6 +18,7 @@ import { SkeletonModule } from './shared/skeleton/skeleton.module';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './components/includes/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 
@@ -44,6 +45,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
         MatProgressBarModule,
         SkeletonModule,
         NgbModule,
+        ReactiveFormsModule,
         ToastrModule.forRoot({
             timeOut: 1500,
             positionClass: 'toast-bottom-center',
@@ -51,7 +53,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
             progressBar: true,
         }),
     ],
-
     bootstrap: [AppComponent]
 })
 export class AppModule { }

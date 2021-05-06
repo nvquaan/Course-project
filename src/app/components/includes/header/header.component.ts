@@ -3,6 +3,7 @@ import { MoviesService } from 'src/app/service/movies.service';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalOptions  } from '@ng-bootstrap/ng-bootstrap'
 import { LoginComponent } from '../login/login.component';
+import { LoginService } from '../_services/login.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private loginService: LoginService) { }
 
   ngOnInit() {
   }
@@ -23,7 +24,13 @@ export class HeaderComponent implements OnInit {
       let options: NgbModalOptions = {
         windowClass: 'my-login-form'
       }
-      this.modalService.open(LoginComponent, options);
+      let formRef = this.modalService.open(LoginComponent, options);
+      this.loginService.isLoggedIn.subscribe(res => {
+          if(res){
+              formRef.close();
+          }
+      })
+      
   }
 
 }
