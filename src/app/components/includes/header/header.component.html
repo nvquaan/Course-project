@@ -12,11 +12,14 @@
         <li class="nav-item">
             <a class="nav-link" [routerLink]="['/tv']" routerLinkActive="router-link-active">Danh mục</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" (click)="onclick()" routerLinkActive="router-link-active">{{label}}</a>
+        <li *ngIf="!isLoggedIn" class="nav-item" style="background-color: #a78585;">
+            <a class="nav-link" (click)="onClickSignIn()" routerLinkActive="router-link-active">Đăng nhập</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" (click)="onClickSignUp()" routerLinkActive="router-link-active">Đăng ký</a>
+        <li *ngIf="isLoggedIn" class="nav-item" style="background-color: #a78585;">
+            <a class="nav-link" (click)="onClickSignOut()" routerLinkActive="router-link-active">Đăng xuất</a>
+        </li>
+        <li *ngIf="!isLoggedIn" class="nav-item">
+            <a class="nav-link" (click)="onClickSignUp()" routerLinkActive="router-link-active" style="background-color: #cc527b;">Đăng ký</a>
         </li>
     </ul>
     <span class="sidebar-nav-btn"  pButton icon="pi pi-plus" label="Show" (click)="leftSidebar = true"><img src="assets/images/menu.svg"></span>

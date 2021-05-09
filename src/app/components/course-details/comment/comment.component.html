@@ -1,0 +1,29 @@
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <div class="card card-white post">
+                <div class="post-heading d-flex">
+                    <div class="image">
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    <div class="meta d-flex flex-column">
+                        <div class="title h5">
+                            <a href="#"><b>{{rateData.user.username}}</b></a>
+                        </div>
+                        <h6 class="text-muted time">{{rateData?.updatedAt | relativeTime}}</h6>
+                        <div class="user-rate">
+                            <ngb-rating [rate]="rateData.rate" [readonly]="true" [max]="5">
+                            </ngb-rating>
+                        </div>
+                    </div>
+                    <div *ngIf="canDelete" class="post-actions">
+                        <button (click)="deleteRate()">Xoá</button>
+                    </div>
+                </div> 
+                <div class="post-description"> 
+                    <p>{{rateData.message}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

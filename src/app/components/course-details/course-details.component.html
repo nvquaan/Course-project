@@ -39,7 +39,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <mat-tab-group class="mt-5 mb-5" mat-align-tabs="center" animationDuration="0ms">
+            <mat-tab-group class="mt-5 mb-5" mat-align-tabs="center" animationDuration="0ms" selectedIndex="4">
                 <mat-tab label="Tổng quan">
                     <div class="listing-space info__movies">
                         <div class="left">
@@ -186,6 +186,9 @@
                             </div>
                         </div>
                     </div>
+                </mat-tab>
+                <mat-tab label="Bình luận">
+                    <app-comment *ngFor="let rate of rates" [rateData]="rate" (delete)="deleteRate($event)"></app-comment>
                 </mat-tab>
             </mat-tab-group>
 

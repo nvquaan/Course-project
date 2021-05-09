@@ -1,6 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialogRef } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/service/user.service';
 
@@ -12,9 +13,9 @@ import { UserService } from 'src/app/service/user.service';
 export class LoginComponent implements OnInit {
     signInForm: FormGroup;
     constructor(
-        private toastrService: ToastrService,
         private userService: UserService,
         private fb: FormBuilder,
+        public dialogRef: MatDialogRef<LoginComponent>,
         ) { }
 
     ngOnInit() {
@@ -33,13 +34,13 @@ export class LoginComponent implements OnInit {
 
         this.userService.signin(params).subscribe((res:any) => {
             if (res.success == true) {
-                console.log(res);
                 const accessToken = res.data.accessToken;
                 localStorage.setItem('x-access-token', accessToken);
                 localStorage.setItem('username', res.data.username);
                 localStorage.setItem('idUser', res.data.id);
-                this.toastrService.success('Đăng nhập thành công 😍👌');
-                this.userService.isLoggedIn.next(true);
+                const roles = res.data.roles;
+                localStorage.setItem('roles', JSON.stringify(roles));
+                this.dialogRef.close(true);
             }
             
         })

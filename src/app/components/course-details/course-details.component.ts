@@ -108,6 +108,8 @@ export class CourseDetailsComponent implements OnInit {
         }
     }
     onRateChange(rate) {
+        if(!rate)
+        return;
         let params: HttpParams = new HttpParams();
         const idUser = localStorage.getItem('idUser');
         params = params.set('user', idUser);
@@ -128,6 +130,7 @@ export class CourseDetailsComponent implements OnInit {
                     this.courseSV.updateRateCourse(this.slugCourse, params).subscribe((res: any) => {
                         if(res.success==true){
                             this.toastrService.success('Update vote thành công 👍👍');
+                            window.location.reload();
                         }
                         else{
                             this.toastrService.error('Có lỗi xảy ra 😥');
@@ -137,18 +140,42 @@ export class CourseDetailsComponent implements OnInit {
             })
         }
         else {
-
-            this.courseSV.rateCourse(this.slugCourse, params).subscribe((res: any) => {
-                if (res.code == 400) {
-                    this.toastrService.error('Bạn cần đăng nhập để thực hiện hành dộng này!!');
+            this.dialog.open(FormConfirmComponent, {
+                height: '600px',
+                width: '900px',
+                data: {
+                    content: 'Bạn có thể nhập nội dung đánh giá',
+                    showTextArea: true
                 }
-                if (res.code == 200) {
-                    this.toastrService.success('Vote thành công 👍👍');
+            }).afterClosed().subscribe(res => {
+                if(res){
+                    params = params.set('message', res);
+                    this.courseSV.rateCourse(this.slugCourse, params).subscribe((res: any) => {
+                        if (res.code == 400) {
+                            this.toastrService.error('Bạn cần đăng nhập để thực hiện hành dộng này!!');
+                        }
+                        if (res.code == 200) {
+                            this.toastrService.success('Vote thành công 👍👍');
+                            window.location.reload();
+                        }
+                    })
                 }
             })
         }
     }
+    deleteRate(id){
+        this.courseSV.deleteRate(this.slugCourse, id).subscribe((res: any) => {
+            if(!res.success && res.code === 400) {
+                this.toastrService.error('Bạn không có quyền thực hiện hành động này 😒');
 
+            }
+            if(res.success == true){
+                this.toastrService.success('Xoá vote thành công 👌');
+                this.getAllRatesOfCourse(this.slugCourse);
+            }
+        });
+
+    }
     getSingleMoviesDetails(id) {
         this.movieService.getMovie(id).subscribe((res: any) => {
             this.movie = res;

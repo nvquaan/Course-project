@@ -19,7 +19,7 @@ export class CoursesService extends  ApiService{
   public getCourse(slug?: any){
     return this.get(this.apiURL + '/courses/' + slug);
   }
-  //Rate 1 khoa hoc
+  //Rate 1 khoa hoc -> slug cua khoa hoc
   public rateCourse(slug:any, params?: any){
     return this.put(this.apiURL + '/courses/rate/' + slug, params);
   }
@@ -30,6 +30,10 @@ export class CoursesService extends  ApiService{
   //Lấy tất cả đánh giá của khoá Học
   public getAllRates(slug: any, params?: any){
     return this.get(this.apiURL + '/courses/rate/' + slug, params);
+  }
+  //Xoá đánh giá khoá học (chỉ mod và admin)
+  public deleteRate(slug: any, id: any){
+    return this.delete(this.apiURL + '/courses/rate/' + slug + '/' + id);
   }
 // Lấy các danh mục khoá học
   public getAllCategories(params?: any){

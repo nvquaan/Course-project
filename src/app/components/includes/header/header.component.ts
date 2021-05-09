@@ -14,61 +14,59 @@ import { RegisterComponent } from '../register/register.component';
 export class HeaderComponent implements OnInit {
     searchBarUp;
     leftSidebar;
-    label: string;
-
+    isLoggedIn;
     constructor(private userService: UserService, private toastrService: ToastrService, private dialog: MatDialog,
     ) {
+
+    }
+
+    ngOnInit() {
         this.userService.checkSignin().subscribe((res: any) => {
             if (res.success == true) {
-                this.label = 'Đăng xuất'
+                this.isLoggedIn = true;
             }
             else {
-                this.label = 'Đăng nhập';
+                this.isLoggedIn = false;
                 localStorage.clear();
             }
         })
     }
 
-    ngOnInit() {
-
-    }
-
-    onclick() {
-        this.userService.checkSignin().subscribe((res: any) => {
-            if (res.success == true) {
-                localStorage.clear();
-                this.toastrService.success('Bạn đã đăng xuất 😥😥');
-                this.label = 'Đăng nhập';
-                window.location.reload();
-            }
-            else {
-                this.dialog.open(LoginComponent, {
-                    height: '600px',
-                    width: '900px',
-                })
-                this.userService.isLoggedIn.subscribe(res => {
-                    if (res) {
-                        this.dialog.closeAll();
-                        this.label = 'Đăng xuất';
-                        window.location.reload();
-
-                    }
-                })
+    onClickSignIn() {
+        this.dialog.open(LoginComponent, {
+            height: '450px',
+            width: '400px',
+        }).afterClosed().subscribe(res => {
+            if (res) {
+                this.dialog.closeAll();
+                this.toastrService.success('Đăng nhập thành công 😍👌');
+                setTimeout(() => {
+                    window.location.reload();
+                    this.isLoggedIn = true;
+                }, 2500);
             }
         })
     }
 
     onClickSignUp() {
         this.dialog.open(RegisterComponent, {
-            height: '600px',
-            width: '900px',
-        })
-        this.userService.isLoggedIn.subscribe(res => {
+            height: '500px',
+            width: '400px',
+        }).afterClosed().subscribe(res => {
             if (res) {
                 this.dialog.closeAll();
-                // this.label = 'Đăng xuất'
+                this.toastrService.success('Đăng ký thành công 😍👌');
             }
         })
+    }
+
+    onClickSignOut() {
+        localStorage.clear();
+        this.toastrService.success('Bạn đã đăng xuất 😥😥');
+        setTimeout(() => {
+            window.location.reload();
+            this.isLoggedIn = false;
+        }, 2500);
     }
 
 }

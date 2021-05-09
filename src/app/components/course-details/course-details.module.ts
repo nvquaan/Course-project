@@ -9,10 +9,12 @@ import { AppCourseDialogComponent } from './app-course-dialog/app-course-dialog.
 import { CarouselModule } from 'primeng/carousel';
 import { PipeModule } from 'src/app/pipe/pipe.module';
 import { NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
+import { CommentComponent } from './comment/comment.component';
 @NgModule({
   declarations: [
     CourseDetailsComponent,
-    AppCourseDialogComponent
+    AppCourseDialogComponent,
+    CommentComponent
   ],
   entryComponents: [
     AppCourseDialogComponent

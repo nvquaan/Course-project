@@ -1,21 +1,19 @@
-<form [formGroup]="signUpForm">
-    <div class="imgcontainer">
-      <!-- <img src="img_avatar2.png" alt="Avatar" class="avatar"> -->
-    </div>
-  
-    <div class="container">
-      <label for="username"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="username" required formControlName="username">
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required formControlName="email">
-      <label for="password"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required formControlName="password">
-  
-      <button type="submit" (click)="onClick(signUpForm.value)">Login</button>
-    </div>
-  
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
+<form [formGroup]="signUpForm" style="width:100%; margin:auto;">  
+    <div style="background-color: #7a7b77;">
+        <div class="container">
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required formControlName="username">
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" required formControlName="email">
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required formControlName="password">
+        
+            <button type="submit" (click)="onClick(signUpForm.value)">Login</button>
+          </div>
+        
+          <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+          </div>
     </div>
   </form>
