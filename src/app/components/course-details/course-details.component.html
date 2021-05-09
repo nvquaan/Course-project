@@ -20,7 +20,7 @@
 
                 <div class="info">
                     <span class="rate">
-                        <i class="material-icons">star</i><span>{{ course?.rate }}</span> /10
+                        <i class="material-icons">star</i><span>{{ course?.rateAvg }}</span> /10
                     </span>
                     <span> {{course?.level}}</span>
                     <span>{{course?.createdAt | date: 'yyyy' }}</span>
@@ -105,7 +105,7 @@
                                     </li>
                                     <li>
                                         <div class="label">
-                                            Rate
+                                            Đánh giá của bạn
                                         </div>
                                         <div class="value">
                                             <ng-template #t let-fill="fill">

@@ -10,7 +10,9 @@ export class UserService extends ApiService {
     public signin(params: any){
         return this.post(this.apiURL + '/auth/signin', params);
     }
-
+    public signup(params: any){
+        return this.post(this.apiURL + '/auth/signup', params);
+    }
     public checkSignin(params?: any){
         return this.get(this.apiURL + '/auth/check-signin', params);
     }

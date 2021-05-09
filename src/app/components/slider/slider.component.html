@@ -13,9 +13,10 @@
                     </h1>
                     <div class="meta">
                         <div class="info">
-                            <span class="rate"><i class="material-icons">star</i><span>{{slider?.rate}}</span>/10</span>
+                            <span class="rate"><i class="material-icons">star</i><span>{{slider?.rateAvg}}</span>/10</span>
                             <span> {{slider?.level }}</span>
                             <span>{{slider?.createdAt | date: 'yyyy' }}</span>
+                            <span>{{slider?.time | time }}</span>
                         </div>
                     </div>
                     <div class="desc">

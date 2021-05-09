@@ -7,6 +7,7 @@ import { AppCourseDialogComponent } from '../course-details/app-course-dialog/ap
 import { CoursesService } from 'src/app/service/courses.service';
 import { HttpParams } from '@angular/common/http';
 import { ToastrService } from "ngx-toastr";
+import { FormConfirmComponent } from '../includes/form-confirm/form-confirm.component';
 
 @Component({
     selector: 'app-course-details',
@@ -24,7 +25,7 @@ export class CourseDetailsComponent implements OnInit {
     backdrops: any = [];
     recomendMovies: any = [];
     responsiveOptions;
-    currentRate = 5;
+    currentRate = 0;
 
     constructor(
         private movieService: MoviesService,
@@ -65,31 +66,87 @@ export class CourseDetailsComponent implements OnInit {
 
             this.getSingleCourse(this.slugCourse);
             this.getAllLessonsOfCourse(this.slugCourse);
+            this.getAllRatesOfCourse(this.slugCourse);
         });
     }
 
     getSingleCourse(slugCourse) {
         this.courseSV.getCourse(slugCourse).subscribe((res: any) => {
-            this.course = res.data;
-            this.currentRate = res.data.rate;
+            if (res.success == true) {
+                this.course = res.data;
+            }
         })
     }
     lessons;
-    getAllLessonsOfCourse(slugCourse){
+    getAllLessonsOfCourse(slugCourse) {
         this.courseSV.getAllLessonsOfCourse(slugCourse).subscribe((res: any) => {
-            this.lessons = res.data;
-            console.log('data', res.data);
-        })
-    }
-    onRateChange(rate){
-        let params:HttpParams = new HttpParams();
-        params = params.set('rate', rate+'');
-
-        this.courseSV.updateCourse(this.slugCourse, params).subscribe((res: any) => {
-            if(res.code == 200){
-                this.toastrService.success('Vote thành công 👍👍');
+            if (res.success == true) {
+                this.lessons = res.data;
             }
         })
+    }
+    rates = [];
+    getAllRatesOfCourse(slugCourse) {
+        this.courseSV.getAllRates(slugCourse).subscribe((res: any) => {
+            if (res.success == true) {
+                this.rates = res.data; //Lấy ra tất cả đánh giá của khoá Học
+                let rateData = this.checkVoted(this.rates);
+                this.currentRate = rateData.rate;
+            }
+        });
+    }
+    checkVoted(rates) { //Hàm check user này đã đánh giá bài học này chưa. Nếu rồi trả về data rate
+        const idUser = localStorage.getItem('idUser');
+        // -> Lặp qua data, tìm giá trị rate của user đang đăng nhập
+        if (idUser) {
+            let r = rates.find(rate => {
+                return idUser == rate.user._id;
+            });
+            return r ? r : 0;
+        } else {
+            return 0;
+        }
+    }
+    onRateChange(rate) {
+        let params: HttpParams = new HttpParams();
+        const idUser = localStorage.getItem('idUser');
+        params = params.set('user', idUser);
+        params = params.set('rate', rate + '');
+        let rateData = this.checkVoted(this.rates);
+        if (rateData) {
+            this.dialog.open(FormConfirmComponent, {
+                height: '600px',
+                width: '900px',
+                data: {
+                    content: 'Bạn có muốn thay đổi vote?',
+                    showTextArea: true
+                }
+            }).afterClosed().subscribe(res => {
+                if (res) {
+                    params = params.set('_id', rateData._id);
+                    params = params.set('message', res);
+                    this.courseSV.updateRateCourse(this.slugCourse, params).subscribe((res: any) => {
+                        if(res.success==true){
+                            this.toastrService.success('Update vote thành công 👍👍');
+                        }
+                        else{
+                            this.toastrService.error('Có lỗi xảy ra 😥');
+                        }
+                    })
+                }
+            })
+        }
+        else {
+
+            this.courseSV.rateCourse(this.slugCourse, params).subscribe((res: any) => {
+                if (res.code == 400) {
+                    this.toastrService.error('Bạn cần đăng nhập để thực hiện hành dộng này!!');
+                }
+                if (res.code == 200) {
+                    this.toastrService.success('Vote thành công 👍👍');
+                }
+            })
+        }
     }
 
     getSingleMoviesDetails(id) {
@@ -108,7 +165,7 @@ export class CourseDetailsComponent implements OnInit {
     }
 
     openDialogMovie(video): void {
-        let a = {...video};
+        let a = { ...video };
         a['imageUrl'] = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + a.imageUrl + this.autoplay);
         this.dialog.open(AppCourseDialogComponent, {
             height: '600px',

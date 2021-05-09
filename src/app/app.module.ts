@@ -20,6 +20,9 @@ import { LoginComponent } from './components/includes/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { ReactiveFormsModule } from "@angular/forms";
 import { ApiInterceptor } from './helpers/api.interceptor ';
+import { MatDialogModule, MatIconModule } from '@angular/material';
+import { RegisterComponent } from './components/includes/register/register.component';
+import { FormConfirmComponent } from './components/includes/form-confirm/form-confirm.component';
 
 
 
@@ -31,8 +34,14 @@ import { ApiInterceptor } from './helpers/api.interceptor ';
         HomeComponent,
         FooterComponent,
         LoginComponent,
+        RegisterComponent,
+        FormConfirmComponent,
     ],
-
+    entryComponents: [
+        RegisterComponent,
+        LoginComponent,
+        FormConfirmComponent
+      ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -46,6 +55,8 @@ import { ApiInterceptor } from './helpers/api.interceptor ';
         MatProgressBarModule,
         SkeletonModule,
         NgbModule,
+        MatDialogModule,
+        MatIconModule,
         ReactiveFormsModule,
         ToastrModule.forRoot({
             timeOut: 1500,

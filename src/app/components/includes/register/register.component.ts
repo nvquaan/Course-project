@@ -5,45 +5,38 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
-    signInForm: FormGroup;
+export class RegisterComponent implements OnInit {
+    signUpForm: FormGroup;
     constructor(
         private toastrService: ToastrService,
         private userService: UserService,
-        private fb: FormBuilder,
-        ) { }
+        private fb: FormBuilder,) { }
 
     ngOnInit() {
-        this.signInForm = this.fb.group({
+        this.signUpForm = this.fb.group({
             username: "",
+            email: "",
             password:"",
-            rememberMe: true
+            rememberMe: true,
         });
-        
     }
 
-    onClick(formValue) {
+    onClick(formValue){
         let params: HttpParams = new HttpParams();
         params = params.set('username', formValue.username);
+        params = params.set('email', formValue.email);
         params = params.set('password', formValue.password);
 
-        this.userService.signin(params).subscribe((res:any) => {
+        this.userService.signup(params).subscribe((res:any) => {
             if (res.success == true) {
-                console.log(res);
-                const accessToken = res.data.accessToken;
-                localStorage.setItem('x-access-token', accessToken);
-                localStorage.setItem('username', res.data.username);
-                localStorage.setItem('idUser', res.data.id);
-                this.toastrService.success('Đăng nhập thành công 😍👌');
+                this.toastrService.success('Đăng ký thành công 😍👌');
                 this.userService.isLoggedIn.next(true);
             }
             
         })
     }
-
-    
 }
