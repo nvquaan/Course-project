@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/service/user.service';
 import { MatDialog } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
+import { CoursesService } from 'src/app/service/courses.service';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -15,7 +16,8 @@ export class HeaderComponent implements OnInit {
     searchBarUp;
     leftSidebar;
     isLoggedIn;
-    constructor(private userService: UserService, private toastrService: ToastrService, private dialog: MatDialog,
+    countCart=0;
+    constructor(private userService: UserService, private toastrService: ToastrService, private dialog: MatDialog, private courseSV: CoursesService,
     ) {
 
     }
@@ -28,6 +30,14 @@ export class HeaderComponent implements OnInit {
             else {
                 this.isLoggedIn = false;
                 localStorage.clear();
+            }
+        });
+        this.checkCart();
+        this.courseSV.isAddedToCart.subscribe((res: any) => {
+            if(res){
+                this.countCart++;
+            } else {
+                this.countCart--;
             }
         })
     }
@@ -67,6 +77,13 @@ export class HeaderComponent implements OnInit {
             window.location.reload();
             this.isLoggedIn = false;
         }, 2500);
+    }
+
+    checkCart(){
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        if (cart) {
+            this.countCart = cart.courses.length;
+        }
     }
 
 }

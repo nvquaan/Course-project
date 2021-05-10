@@ -26,7 +26,7 @@ export class CourseDetailsComponent implements OnInit {
     recomendMovies: any = [];
     responsiveOptions;
     currentRate = 0;
-
+    btnCart: boolean = false;
     constructor(
         private movieService: MoviesService,
         private router: ActivatedRoute,
@@ -74,6 +74,7 @@ export class CourseDetailsComponent implements OnInit {
         this.courseSV.getCourse(slugCourse).subscribe((res: any) => {
             if (res.success == true) {
                 this.course = res.data;
+                this.checkCart();
             }
         })
     }
@@ -108,8 +109,8 @@ export class CourseDetailsComponent implements OnInit {
         }
     }
     onRateChange(rate) {
-        if(!rate)
-        return;
+        if (!rate)
+            return;
         let params: HttpParams = new HttpParams();
         const idUser = localStorage.getItem('idUser');
         params = params.set('user', idUser);
@@ -128,11 +129,11 @@ export class CourseDetailsComponent implements OnInit {
                     params = params.set('_id', rateData._id);
                     params = params.set('message', res);
                     this.courseSV.updateRateCourse(this.slugCourse, params).subscribe((res: any) => {
-                        if(res.success==true){
+                        if (res.success == true) {
                             this.toastrService.success('Update vote thành công 👍👍');
                             window.location.reload();
                         }
-                        else{
+                        else {
                             this.toastrService.error('Có lỗi xảy ra 😥');
                         }
                     })
@@ -148,7 +149,7 @@ export class CourseDetailsComponent implements OnInit {
                     showTextArea: true
                 }
             }).afterClosed().subscribe(res => {
-                if(res){
+                if (res) {
                     params = params.set('message', res);
                     this.courseSV.rateCourse(this.slugCourse, params).subscribe((res: any) => {
                         if (res.code == 400) {
@@ -163,18 +164,58 @@ export class CourseDetailsComponent implements OnInit {
             })
         }
     }
-    deleteRate(id){
+    deleteRate(id) {
         this.courseSV.deleteRate(this.slugCourse, id).subscribe((res: any) => {
-            if(!res.success && res.code === 400) {
+            if (!res.success && res.code === 400) {
                 this.toastrService.error('Bạn không có quyền thực hiện hành động này 😒');
 
             }
-            if(res.success == true){
+            if (res.success == true) {
                 this.toastrService.success('Xoá vote thành công 👌');
                 this.getAllRatesOfCourse(this.slugCourse);
             }
         });
 
+    }
+    checkCart(){
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        console.log(cart);
+        if (cart) {
+            let course = this.course;
+            let index = cart.courses.findIndex(x=> x._id == course._id);
+            if(index >= 0)
+            this.btnCart = true;
+            else {
+                this.btnCart = false;
+            }
+        }
+    }
+    onAddToCart() {
+        let username = localStorage.getItem('username');
+        if (username) {
+            let course = this.course;
+            let cart = JSON.parse(localStorage.getItem('cart'));
+            cart.username = username;
+            cart.courses.push(course);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            this.courseSV.isAddedToCart.next(true);
+            this.btnCart = true;
+        }
+        else {
+            this.toastrService.error('Bạn cần đăng nhập để thực hiện hành dộng này!!');
+        }
+
+    }
+    onRemoveFromCart() {
+        let cart = JSON.parse(localStorage.getItem('cart'));
+        if (cart) {
+            let course = this.course;
+            let index = cart.courses.findIndex(x=> x._id == course._id);
+            cart.courses.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            this.courseSV.isAddedToCart.next(false);
+            this.btnCart = false;
+        }
     }
     getSingleMoviesDetails(id) {
         this.movieService.getMovie(id).subscribe((res: any) => {

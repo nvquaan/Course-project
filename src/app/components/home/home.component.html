@@ -47,7 +47,7 @@
                 </div>
                 <img [src]="course.imageUrl">
                 <h6>{{ course?.name }}</h6>
-                <p class="rate"><i class="material-icons">star</i><span>{{course?.vote_average}}</span>/10</p>
+                <p class="rate"><i class="material-icons">star</i><span>{{course?.rateAvg}}</span>/10</p>
                 <p class="year"><span>{{course?.first_air_date | date: 'yyyy'}}</span>
             </div>
         </ng-template>

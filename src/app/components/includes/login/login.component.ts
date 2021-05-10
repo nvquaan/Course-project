@@ -38,6 +38,11 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('x-access-token', accessToken);
                 localStorage.setItem('username', res.data.username);
                 localStorage.setItem('idUser', res.data.id);
+                let cart = {
+                    username: res.data.username,
+                    courses: [],
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
                 const roles = res.data.roles;
                 localStorage.setItem('roles', JSON.stringify(roles));
                 this.dialogRef.close(true);

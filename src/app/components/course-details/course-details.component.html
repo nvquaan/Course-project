@@ -20,8 +20,9 @@
 
                 <div class="info">
                     <span class="rate">
-                        <i class="material-icons">star</i><span>{{ course?.rateAvg }}</span> /10
+                        <i class="material-icons">star</i><span>{{ course?.rateAvg }}</span> /5
                     </span>
+                    <span> {{rates.length}} đánh giá</span>
                     <span> {{course?.level}}</span>
                     <span>{{course?.createdAt | date: 'yyyy' }}</span>
                     <span>{{course?.time | time }}</span>
@@ -74,8 +75,10 @@
                                         <div class="label">
                                             Giá
                                         </div>
-                                        <div class="value">
-                                            {{ course?.cost | numberWithCommas }}vnđ
+                                        <div class="value" style="font-size:20px; font-weight:600; color: #ffa6a6;">
+                                            {{ course?.cost | numberWithCommas }}vnđ 
+                                            <button *ngIf="!btnCart" class="btn-add-to-cart" (click)="onAddToCart()">Thêm vào giỏ</button>
+                                            <button *ngIf="btnCart" class="btn-remove-from-cart" (click)="onRemoveFromCart()">Xoá khỏi giỏ</button>
                                         </div>
                                     </li>
                                     <li>

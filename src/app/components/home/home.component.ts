@@ -77,9 +77,12 @@ export class HomeComponent implements OnInit {
 
     listHotCourses;
     getAllHotCourses() {
-        this.courseSV.getAllCourses().subscribe(res => {
-            this.listHotCourses = res['data'];
-            this.loader = false;
+        this.courseSV.getAllCourses().subscribe((res: any) => {
+            if (res.success == true) {
+                this.listHotCourses = res['data'];
+                this.listHotCourses = this.listHotCourses.sort((a, b) => b.rateAvg - a.rateAvg);
+                this.loader = false;
+            }
         })
     }
 }

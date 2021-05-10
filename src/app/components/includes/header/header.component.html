@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" [routerLink]="['/']" style="width: 311px;"><img src="../../../../assets/images/Logo.png" alt=""></a>
+    <a class="navbar-brand" [routerLink]="['/']" style="width: 311px;"><img src="../../../../assets/images/Logo.png"
+            alt=""></a>
     <ul class="navbar-nav ml-auto listMenu">
         <li class="nav-item active">
             <a class="nav-link" [routerLink]="['/']" routerLinkActive="router-link-active">Trang chủ
@@ -16,13 +17,18 @@
             <a class="nav-link" (click)="onClickSignIn()" routerLinkActive="router-link-active">Đăng nhập</a>
         </li>
         <li *ngIf="isLoggedIn" class="nav-item" style="background-color: #a78585;">
+            <a class="nav-link" (click)="onClickSignIn()" routerLinkActive="router-link-active">Giỏ hàng <span *ngIf="countCart">{{countCart}}</span></a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item" style="background-color: #a78585;">
             <a class="nav-link" (click)="onClickSignOut()" routerLinkActive="router-link-active">Đăng xuất</a>
         </li>
         <li *ngIf="!isLoggedIn" class="nav-item">
-            <a class="nav-link" (click)="onClickSignUp()" routerLinkActive="router-link-active" style="background-color: #cc527b;">Đăng ký</a>
+            <a class="nav-link" (click)="onClickSignUp()" routerLinkActive="router-link-active"
+                style="background-color: #cc527b;">Đăng ký</a>
         </li>
     </ul>
-    <span class="sidebar-nav-btn"  pButton icon="pi pi-plus" label="Show" (click)="leftSidebar = true"><img src="assets/images/menu.svg"></span>
+    <span class="sidebar-nav-btn" pButton icon="pi pi-plus" label="Show" (click)="leftSidebar = true"><img
+            src="assets/images/menu.svg"></span>
 </nav>
 
 <p-sidebar [(visible)]="leftSidebar" position="right" [baseZIndex]="10000">
@@ -36,7 +42,8 @@
             </div>
             <div class="sidebarMenu">
                 <img src="assets/images/videos.svg">
-                <a class="sidebar-nav-link" [routerLink]="['/movies']" routerLinkActive="router-link-active">Khoá học</a>
+                <a class="sidebar-nav-link" [routerLink]="['/movies']" routerLinkActive="router-link-active">Khoá
+                    học</a>
             </div>
             <div class="sidebarMenu">
                 <img src="assets/images/tv.svg">
@@ -44,7 +51,8 @@
             </div>
             <div class="sidebarMenu genre_">
                 <img src="assets/images/tripod.svg">
-                <a class="sidebar-nav-link" [routerLink]="['/genres']" routerLinkActive="router-link-active">Đăng nhập</a>
+                <a class="sidebar-nav-link" [routerLink]="['/genres']" routerLinkActive="router-link-active">Đăng
+                    nhập</a>
             </div>
         </div>
     </div>
