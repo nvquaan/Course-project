@@ -7,6 +7,7 @@ import { UserService } from 'src/app/service/user.service';
 import { MatDialog } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import { CoursesService } from 'src/app/service/courses.service';
+import { CartComponent } from '../cart/cart.component';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -84,6 +85,12 @@ export class HeaderComponent implements OnInit {
         if (cart) {
             this.countCart = cart.courses.length;
         }
+    }
+    onClickCart(){
+        // this.dialog.open(CartComponent, {
+        //     height: '500px',
+        //     width: '1055px',
+        // });
     }
 
 }

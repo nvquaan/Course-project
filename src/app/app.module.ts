@@ -23,6 +23,7 @@ import { ApiInterceptor } from './helpers/api.interceptor ';
 import { MatDialogModule, MatIconModule } from '@angular/material';
 import { RegisterComponent } from './components/includes/register/register.component';
 import { FormConfirmComponent } from './components/includes/form-confirm/form-confirm.component';
+import { CartComponent } from './components/includes/cart/cart.component';
 
 
 
@@ -36,11 +37,13 @@ import { FormConfirmComponent } from './components/includes/form-confirm/form-co
         LoginComponent,
         RegisterComponent,
         FormConfirmComponent,
+        CartComponent,
     ],
     entryComponents: [
         RegisterComponent,
         LoginComponent,
-        FormConfirmComponent
+        FormConfirmComponent,
+        CartComponent,
       ],
     imports: [
         BrowserModule,

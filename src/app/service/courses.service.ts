@@ -11,6 +11,10 @@ export class CoursesService extends ApiService {
     public getAllCourses(params?: any) {
         return this.get(this.apiURL + '/courses', params);
     }
+    //Lấy các khoá học HOT
+    public getAllHotCourses(params?: any) {
+        return this.get(this.apiURL + '/courses/hot', params);
+    }
     //Lấy các khoá học đã xoá
     public getAllDeletedCourses(params?: any) {
         return this.get(this.apiURL + '/me/trash/courses', params);

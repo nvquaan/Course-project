@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="heading">
+        <h1>Giỏ hàng</h1>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="courses?.length > 0; else empty" class="row">
+    <div class="col-xl-9">
+      <div *ngFor="let course of courses" class="col-xl-12">
+        <div class="course-item d-flex">
+          <button (click)="removeCourse(course._id)">❌</button>
+          <div class="col-xl-3">
+            <div class="course-image">
+              <img [src]="course?.imageUrl" alt="" />
+            </div>
+          </div>
+          <div class="course-content d-flex justify-content-between">
+            <div class="content-text">
+              <div class="name">{{ course.name }}</div>
+              <div class="real-value">
+                ❌Giá gốc: {{ course.cost | numberWithCommas }}
+              </div>
+              <div class="discount-value">📢Giảm giá: 20%</div>
+              <div class="course-value">
+                💰Thành tiền: {{ course.cost | numberWithCommas }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3">
+      <div class="total-cart">
+        <div>Số khoá học: 3</div>
+        <div>Tổng tiền:</div>
+        <div class="total-value">500.000đ</div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #empty>
+  <div class="row justify-content-center">
+    <div class="d-flex flex-column align-items-center">
+      <img
+        class="empty-cart"
+        src="../../../../assets/images/empty_cart.png"
+        alt=""
+      />
+      <span>Không có sản phẩm nào trong giỏ hàng của bạn 😥</span>
+    </div>
+  </div>
+</ng-template>

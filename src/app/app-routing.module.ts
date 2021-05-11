@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { CartComponent } from './components/includes/cart/cart.component';
 import { LoginComponent } from './components/includes/login/login.component';
 
 const routes: Routes = [
@@ -40,8 +41,8 @@ const routes: Routes = [
     loadChildren: () => import('./components/genre-list/genre-list.module').then(mod => mod.GenreListModule)
   },
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'cart',
+    component: CartComponent,
   },
   {
     path: 'person/:id',

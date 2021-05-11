@@ -17,7 +17,7 @@
             <a class="nav-link" (click)="onClickSignIn()" routerLinkActive="router-link-active">Đăng nhập</a>
         </li>
         <li *ngIf="isLoggedIn" class="nav-item" style="background-color: #a78585;">
-            <a class="nav-link" (click)="onClickSignIn()" routerLinkActive="router-link-active">Giỏ hàng <span *ngIf="countCart">{{countCart}}</span></a>
+            <a class="nav-link" [routerLink]="['/cart']" routerLinkActive="router-link-active">🛒 <span *ngIf="countCart">{{countCart}}</span></a>
         </li>
         <li *ngIf="isLoggedIn" class="nav-item" style="background-color: #a78585;">
             <a class="nav-link" (click)="onClickSignOut()" routerLinkActive="router-link-active">Đăng xuất</a>

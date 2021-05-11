@@ -40,7 +40,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <mat-tab-group class="mt-5 mb-5" mat-align-tabs="center" animationDuration="0ms" selectedIndex="4">
+            <mat-tab-group class="mt-5 mb-5" mat-align-tabs="center" animationDuration="0ms">
                 <mat-tab label="Tổng quan">
                     <div class="listing-space info__movies">
                         <div class="left">
@@ -77,8 +77,8 @@
                                         </div>
                                         <div class="value" style="font-size:20px; font-weight:600; color: #ffa6a6;">
                                             {{ course?.cost | numberWithCommas }}vnđ 
-                                            <button *ngIf="!btnCart" class="btn-add-to-cart" (click)="onAddToCart()">Thêm vào giỏ</button>
-                                            <button *ngIf="btnCart" class="btn-remove-from-cart" (click)="onRemoveFromCart()">Xoá khỏi giỏ</button>
+                                            <button *ngIf="!btnCart" class="btn-add-to-cart" (click)="onAddToCart()" style="background: none">➕</button>
+                                            <button *ngIf="btnCart" class="btn-remove-from-cart" (click)="onRemoveFromCart()" style="background: none">❌</button>
                                         </div>
                                     </li>
                                     <li>
@@ -90,7 +90,7 @@
                                         </div>
                                     </li>
 
-                                    <li *ngIf="movie?.genres.length">
+                                    <li>
                                         <div class="label">
                                             Danh mục
                                         </div>
@@ -98,7 +98,7 @@
                                             {{ course?.category.name }}
                                         </div>
                                     </li>
-                                    <li *ngIf="movie?.spoken_languages?.length">
+                                    <li>
                                         <div class="label">
                                             Ngôn ngữ
                                         </div>
