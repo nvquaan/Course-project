@@ -26,7 +26,7 @@ export class CourseDetailsComponent implements OnInit {
     recomendMovies: any = [];
     responsiveOptions;
     currentRate = 0;
-    btnCart: boolean = false;
+    btnCart: number; // 1: da them vao gio 2: chua them 3: da mua
     constructor(
         private movieService: MoviesService,
         private router: ActivatedRoute,
@@ -58,15 +58,12 @@ export class CourseDetailsComponent implements OnInit {
     ngOnInit() {
         this.router.params.subscribe((params: Params) => {
             this.slugCourse = params['slug'];
-            this.getSingleMoviesVideos(this.id);
-            this.getSingleMoviesDetails(this.id);
             this.getCast(this.id);
-            this.getBackropsImages(this.id);
-            this.getRecomendMovie(this.id);
 
             this.getSingleCourse(this.slugCourse);
             this.getAllLessonsOfCourse(this.slugCourse);
             this.getAllRatesOfCourse(this.slugCourse);
+            this.getRecomendCourses();
         });
     }
 
@@ -74,7 +71,14 @@ export class CourseDetailsComponent implements OnInit {
         this.courseSV.getCourse(slugCourse).subscribe((res: any) => {
             if (res.success == true) {
                 this.course = res.data;
-                this.checkCart();
+                //check xem khoa hoc nay da mua chua
+                let bought = JSON.parse(localStorage.getItem('bought'));
+                if(bought && bought.includes(this.course._id)){
+                    this.btnCart = 3;
+                }
+                else {
+                    this.checkCart();
+                }
             }
         })
     }
@@ -177,16 +181,16 @@ export class CourseDetailsComponent implements OnInit {
         });
 
     }
-    checkCart(){
+    checkCart() {
         let cart = JSON.parse(localStorage.getItem('cart'));
         console.log(cart);
         if (cart) {
             let course = this.course;
-            let index = cart.courses.findIndex(x=> x._id == course._id);
-            if(index >= 0)
-            this.btnCart = true;
+            let index = cart.courses.findIndex(x => x._id == course._id);
+            if (index >= 0)
+                this.btnCart = 1;
             else {
-                this.btnCart = false;
+                this.btnCart = 2;
             }
         }
     }
@@ -199,7 +203,7 @@ export class CourseDetailsComponent implements OnInit {
             cart.courses.push(course);
             localStorage.setItem('cart', JSON.stringify(cart));
             this.courseSV.isAddedToCart.next(true);
-            this.btnCart = true;
+            this.btnCart = 1;
         }
         else {
             this.toastrService.error('Bạn cần đăng nhập để thực hiện hành dộng này!!');
@@ -210,27 +214,23 @@ export class CourseDetailsComponent implements OnInit {
         let cart = JSON.parse(localStorage.getItem('cart'));
         if (cart) {
             let course = this.course;
-            let index = cart.courses.findIndex(x=> x._id == course._id);
+            let index = cart.courses.findIndex(x => x._id == course._id);
             cart.courses.splice(index, 1);
             localStorage.setItem('cart', JSON.stringify(cart));
             this.courseSV.isAddedToCart.next(false);
-            this.btnCart = false;
+            this.btnCart = 2;
         }
     }
-    getSingleMoviesDetails(id) {
-        this.movieService.getMovie(id).subscribe((res: any) => {
-            this.movie = res;
-        });
+
+    recomendCourses
+    getRecomendCourses() {
+        this.courseSV.getAllCourses().subscribe((res: any) => {
+            if (res.success == true) {
+                this.recomendCourses = res['data'];
+            }
+        })
     }
 
-    getSingleMoviesVideos(id) {
-        this.movieService.getMovieVideos(id).subscribe((res: any) => {
-            if (res.results.length) {
-                this.video = res.results[0];
-                this.relatedvideo = res.results;
-            }
-        });
-    }
 
     openDialogMovie(video): void {
         let a = { ...video };
@@ -245,18 +245,6 @@ export class CourseDetailsComponent implements OnInit {
     getCast(id) {
         this.movieService.getMovieCredits(id).subscribe((res: any) => {
             this.casts = res.cast;
-        });
-    }
-
-    getBackropsImages(id) {
-        this.movieService.getBackdropsImages(id).subscribe((res: any) => {
-            this.backdrops = res.backdrops;
-        });
-    }
-
-    getRecomendMovie(id) {
-        this.movieService.getRecomendMovies(id).subscribe((res: any) => {
-            this.recomendMovies = res.results;
         });
     }
 

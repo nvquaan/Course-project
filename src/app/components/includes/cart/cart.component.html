@@ -34,9 +34,10 @@
     </div>
     <div class="col-xl-3">
       <div class="total-cart">
-        <div>Số khoá học: 3</div>
+        <div>Số khoá học: {{courses.length}}</div>
         <div>Tổng tiền:</div>
-        <div class="total-value">500.000đ</div>
+        <div class="total-value">{{total | numberWithCommas}}đ</div>
+        <button class="btn-buy" (click)="onClickBuy()">MUA NGAY</button>
       </div>
     </div>
   </div>

@@ -22,6 +22,9 @@
         <li *ngIf="isLoggedIn" class="nav-item" style="background-color: #a78585;">
             <a class="nav-link" (click)="onClickSignOut()" routerLinkActive="router-link-active">Đăng xuất</a>
         </li>
+        <li *ngIf="isLoggedIn" class="nav-item" style="background-color: #a78585;">
+            <a class="nav-link">💰{{wallet | numberWithCommas}}</a>
+        </li>
         <li *ngIf="!isLoggedIn" class="nav-item">
             <a class="nav-link" (click)="onClickSignUp()" routerLinkActive="router-link-active"
                 style="background-color: #cc527b;">Đăng ký</a>

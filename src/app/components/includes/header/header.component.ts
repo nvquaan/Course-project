@@ -1,13 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MoviesService } from 'src/app/service/movies.service';
-import { Router } from '@angular/router';
 import { LoginComponent } from '../login/login.component';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/service/user.service';
 import { MatDialog } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import { CoursesService } from 'src/app/service/courses.service';
-import { CartComponent } from '../cart/cart.component';
+import { HttpParams } from '@angular/common/http';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -17,16 +15,21 @@ export class HeaderComponent implements OnInit {
     searchBarUp;
     leftSidebar;
     isLoggedIn;
-    countCart=0;
+    countCart = 0;
+    wallet;
     constructor(private userService: UserService, private toastrService: ToastrService, private dialog: MatDialog, private courseSV: CoursesService,
     ) {
 
     }
 
     ngOnInit() {
-        this.userService.checkSignin().subscribe((res: any) => {
+        this.userService.checkSignin(localStorage.getItem('username')).subscribe((res: any) => {
             if (res.success == true) {
                 this.isLoggedIn = true;
+                this.wallet = res.data.wallet;
+                localStorage.setItem('wallet', this.wallet);
+                localStorage.setItem('bought', JSON.stringify(res.data.courses));
+
             }
             else {
                 this.isLoggedIn = false;
@@ -35,12 +38,16 @@ export class HeaderComponent implements OnInit {
         });
         this.checkCart();
         this.courseSV.isAddedToCart.subscribe((res: any) => {
-            if(res){
+            if (res) {
                 this.countCart++;
             } else {
                 this.countCart--;
             }
         })
+        this.userService.wallet.subscribe(res => {
+            this.wallet = res;
+            localStorage.setItem('wallet', this.wallet);
+        });
     }
 
     onClickSignIn() {
@@ -80,13 +87,13 @@ export class HeaderComponent implements OnInit {
         }, 2500);
     }
 
-    checkCart(){
+    checkCart() {
         let cart = JSON.parse(localStorage.getItem('cart'));
         if (cart) {
             this.countCart = cart.courses.length;
         }
     }
-    onClickCart(){
+    onClickCart() {
         // this.dialog.open(CartComponent, {
         //     height: '500px',
         //     width: '1055px',

@@ -53,9 +53,19 @@
 .total-cart {
   padding: 20px;
   border: 1px solid rgb(163, 153, 153);
+  position: sticky;
+  top: 20px;
   .total-value {
     font-size: 30px;
     font-weight: bold;
     color: #ff8282;
+  }
+  .btn-buy {
+    background: #ff4081;
+    color: white;
+    font-size: 22px;
+    padding: 10px;
+    width: 100%;
+    margin-top: 12px;
   }
 }
