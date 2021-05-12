@@ -146,7 +146,7 @@
                     </div>
 
                 </mat-tab>
-                <mat-tab label="Bài học">
+                <mat-tab *ngIf="bought" label="Bài học">
                     <div class="listing-space videos__status">
                         <div class="items">
                             <div class="item" *ngFor="let list of lessons; let index = index">

@@ -27,6 +27,7 @@ export class CourseDetailsComponent implements OnInit {
     responsiveOptions;
     currentRate = 0;
     btnCart: number; // 1: da them vao gio 2: chua them 3: da mua
+    bought: boolean;
     constructor(
         private movieService: MoviesService,
         private router: ActivatedRoute,
@@ -72,8 +73,8 @@ export class CourseDetailsComponent implements OnInit {
             if (res.success == true) {
                 this.course = res.data;
                 //check xem khoa hoc nay da mua chua
-                let bought = JSON.parse(localStorage.getItem('bought'));
-                if(bought && bought.includes(this.course._id)){
+                this.bought = this.checkBought();
+                if (this.bought) {
                     this.btnCart = 3;
                 }
                 else {
@@ -81,6 +82,15 @@ export class CourseDetailsComponent implements OnInit {
                 }
             }
         })
+    }
+    checkBought() {
+        let bought = JSON.parse(localStorage.getItem('bought'));
+        if (bought && bought.includes(this.course._id)) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     lessons;
     getAllLessonsOfCourse(slugCourse) {
