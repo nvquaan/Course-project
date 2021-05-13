@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit {
                 this.wallet = res.data.wallet;
                 localStorage.setItem('wallet', this.wallet);
                 localStorage.setItem('bought', JSON.stringify(res.data.courses));
-
             }
             else {
                 this.isLoggedIn = false;
@@ -58,10 +57,8 @@ export class HeaderComponent implements OnInit {
             if (res) {
                 this.dialog.closeAll();
                 this.toastrService.success('Đăng nhập thành công 😍👌');
-                setTimeout(() => {
-                    window.location.reload();
-                    this.isLoggedIn = true;
-                }, 2500);
+                window.location.reload();
+                this.isLoggedIn = true;
             }
         })
     }
@@ -81,10 +78,8 @@ export class HeaderComponent implements OnInit {
     onClickSignOut() {
         localStorage.clear();
         this.toastrService.success('Bạn đã đăng xuất 😥😥');
-        setTimeout(() => {
-            window.location.reload();
-            this.isLoggedIn = false;
-        }, 2500);
+        window.location.reload();
+        this.isLoggedIn = false;
     }
 
     checkCart() {
