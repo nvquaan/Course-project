@@ -1,71 +1,71 @@
 * {
-  font-size: 18px;
+    font-size: 18px;
 }
 .heading {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  h1 {
-    font-size: 36px;
-    font-weight: bold;
-  }
+    display: flex;
+    justify-content: center;
+    position: relative;
+    h1 {
+        font-size: 36px;
+        font-weight: bold;
+    }
 }
 .empty-cart {
-  width: 42%;
-  & + span {
-    margin-bottom: 20px;
-    color: #d06262;
-  }
+    width: 42%;
+    & + span {
+        margin-bottom: 20px;
+        color: #d06262;
+    }
 }
 .course-item {
-  margin-bottom: 40px;
-  padding: 20px;
-  border: 1px solid rgb(163, 153, 153);
-  max-height: 250px;
-  position: relative;
-  button {
-    position: absolute;
-    background: none;
-    right: 5px;
-    top: 15px;
-  }
-  .course-content {
-    flex-grow: 1;
+    margin-bottom: 40px;
     padding: 20px;
-    .content-text {
-      .name {
-        font-weight: bold;
-        font-size: 22px;
-        color: aquamarine;
-      }
-      .real-value {
-        font-size: 21px;
-        text-decoration: line-through;
-        color: #a7a7a7;
-      }
-      .course-value {
-        font-size: 24px;
-        font-style: italic;
-      }
+    border: 1px solid rgb(163, 153, 153);
+    max-height: 250px;
+    position: relative;
+    button {
+        position: absolute;
+        background: none;
+        right: 5px;
+        top: 15px;
     }
-  }
+    .course-content {
+        flex-grow: 1;
+        padding: 20px;
+        .content-text {
+            .name {
+                font-weight: bold;
+                font-size: 22px;
+                color: aquamarine;
+            }
+            .real-value {
+                font-size: 21px;
+                text-decoration: line-through;
+                color: #a7a7a7;
+            }
+            .course-value {
+                font-size: 24px;
+                font-style: italic;
+            }
+        }
+    }
 }
 .total-cart {
-  padding: 20px;
-  border: 1px solid rgb(163, 153, 153);
-  position: sticky;
-  top: 20px;
-  .total-value {
-    font-size: 30px;
-    font-weight: bold;
-    color: #ff8282;
-  }
-  .btn-buy {
-    background: #ff4081;
-    color: white;
-    font-size: 22px;
-    padding: 10px;
-    width: 100%;
-    margin-top: 12px;
-  }
+    padding: 20px;
+    border: 1px solid rgb(163, 153, 153);
+    position: sticky;
+    top: 20px;
+    .total-value {
+        font-size: 30px;
+        font-weight: bold;
+        color: #ff8282;
+    }
+    .btn-buy {
+        background: #ff4081;
+        color: white;
+        font-size: 22px;
+        padding: 10px;
+        width: 100%;
+        margin-top: 12px;
+    }
 }

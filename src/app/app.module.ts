@@ -24,6 +24,7 @@ import { MatDialogModule, MatIconModule } from '@angular/material';
 import { RegisterComponent } from './components/includes/register/register.component';
 import { FormConfirmComponent } from './components/includes/form-confirm/form-confirm.component';
 import { CartComponent } from './components/includes/cart/cart.component';
+import { UserComponent } from './components/user/user.component';
 
 
 
@@ -38,6 +39,7 @@ import { CartComponent } from './components/includes/cart/cart.component';
         RegisterComponent,
         FormConfirmComponent,
         CartComponent,
+        UserComponent,
     ],
     entryComponents: [
         RegisterComponent,

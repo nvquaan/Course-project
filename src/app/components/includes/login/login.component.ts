@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
         this.signInForm = this.fb.group({
             username: "",
             password:"",
-            rememberMe: true
         });
         
     }

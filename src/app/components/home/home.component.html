@@ -38,7 +38,7 @@
         </a>
     </div>
     <app-skeleton *ngIf="loader"></app-skeleton>
-    <p-carousel [value]="listHotCourses" [numVisible]="4" [autoplayInterval]="3000" [numScroll]="1" [circular]="false" *ngIf="!loader"
+    <p-carousel [value]="listHotCourses" [numVisible]="5" [autoplayInterval]="3000" [numScroll]="1" [circular]="false" *ngIf="!loader"
         [responsiveOptions]="responsiveOptions">
         <ng-template let-course pTemplate="item">
             <div class="listing-item-style" [routerLink]="['/courses/', course.slug]">
