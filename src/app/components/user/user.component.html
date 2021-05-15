@@ -1,25 +1,48 @@
 <div class="container">
-    <div class="row">
-        <div class="col-xl-12">
-            <div class="heading">
-                <h1>THÔNG TIN TÀI KHOẢN</h1>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="heading">
+        <h1>THÔNG TIN TÀI KHOẢN</h1>
+      </div>
     </div>
+  </div>
 
-    <div class="row mb-4">
-        <div class="col-xl-5 card">
-            <div class="green-background"></div>
-            <div class="card-user">
-                <img src="https://image.flaticon.com/icons/png/512/194/194938.png" alt="">
-                <h3>Nguyễn Văn Quân</h3>
-                <p class="role"> 🤝Admin🤝</p>
-                <div>
-                    <span>📧 quan.ng99@gmail.com</span> | <span>📞 0123456789</span>
-                </div>
-                <p class="wallet">💳 10,000,000vnđ</p>
-            </div>
+  <div class="row mb-4">
+    <div class="col-xl-5 card">
+      <div class="card-user">
+        <div class="cover">
+          <img
+            src="https://image.flaticon.com/icons/png/512/194/194938.png"
+            alt=""
+          />
         </div>
-        <div class="col-xl-7"></div>
+        <h3>Nguyễn Văn Quân</h3>
+        <p class="role">🤝Admin🤝</p>
+        <p class="age">Nam ※ 21 tuổi</p>
+        <div>
+          <span>📧 quan.ng99@gmail.com</span> | <span>📞 0123456789</span>
+        </div>
+        <p class="wallet">💳 10,000,000vnđ</p>
+        <div class="footer"></div>
+      </div>
     </div>
+    <div class="col-xl-7 list-courses">
+      <div *ngIf="courses" class="col-xl-12">
+        <div *ngFor="let item of courses" class="course-item d-flex">
+            <div class="col-xl-3">
+              <div class="course-image">
+                <img [src]="item.course?.imageUrl" alt=""/>
+              </div>
+            </div>
+            <div class="course-content d-flex justify-content-between">
+              <div class="content-text">
+                <div class="name">{{item.course.name}}</div>
+                <div class="course-value">💰 Giá mua: {{item.course.cost | numberWithCommas }}đ</div>
+                <p>📅 Ngày mua: {{item.date}}</p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>

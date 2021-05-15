@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { CoursesService } from 'src/app/service/courses.service';
 import { UserService } from 'src/app/service/user.service';
+import * as moment from 'moment';
 @Component({
     selector: 'app-cart',
     templateUrl: './cart.component.html',
@@ -39,11 +40,13 @@ export class CartComponent implements OnInit {
     }
 
     onClickBuy() {
+        let date =  moment(new Date()).format('DD/MM/YYYY');
         let coursesId = this.courses.map(c => c._id);
         let params = {
             coursesId: coursesId,
             total: this.total,
-            username: localStorage.getItem('username')
+            username: localStorage.getItem('username'),
+            date: date
         };
         this.userService.buyCourses(params).subscribe((res: any) => {
             if(res.success == true) {
@@ -53,6 +56,7 @@ export class CartComponent implements OnInit {
                 c.courses = [];
                 localStorage.setItem('cart', JSON.stringify(c));
                 this.getCourses();
+                console.log(res);
                 window.location.reload();
             }
         })

@@ -85,8 +85,8 @@ export class CourseDetailsComponent implements OnInit {
     }
     checkBought() {
         let bought = JSON.parse(localStorage.getItem('bought'));
-        if (bought && bought.includes(this.course._id)) {
-            return true;
+        if (bought && bought.length > 0) {
+            return bought.find(c => c.course._id == this.course._id);
         }
         else {
             return false;
