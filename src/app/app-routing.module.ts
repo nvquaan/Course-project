@@ -42,6 +42,10 @@ const routes: Routes = [
     loadChildren: () => import('./components/genre-list/genre-list.module').then(mod => mod.GenreListModule)
   },
   {
+    path: 'courses',
+    loadChildren: () => import('./components/courses/courses.module').then(mod => mod.CoursesModule)
+  },
+  {
     path: 'cart',
     component: CartComponent,
   },

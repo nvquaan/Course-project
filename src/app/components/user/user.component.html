@@ -36,7 +36,7 @@
             </div>
             <div class="course-content d-flex justify-content-between">
               <div class="content-text">
-                <div class="name">{{item.course.name}}</div>
+                <div><a class="name" [routerLink]="['/courses/', item.course.slug]">{{item.course.name}}</a></div>
                 <div class="course-value">💰 Giá mua: {{item.course.cost | numberWithCommas }}đ</div>
                 <p>📅 Ngày mua: {{item.date}}</p>
               </div>

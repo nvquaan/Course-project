@@ -1,0 +1,51 @@
+<div class="listing">
+    <div class="listing__head">
+        <h3 class="listing__title">Khoá học</h3>
+    </div>
+    <form>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control searchdesign" placeholder="Tìm kiếm khoá học..."
+                            [(ngModel)]="searchStr" name="searchStr" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary btnDesign" type="button" (click)="searchCourses()">
+                                Tìm
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <app-skeleton *ngIf="loader"></app-skeleton>
+    <div class="row" *ngIf="!loader">
+        <div class="col-md-2 listing__items" *ngFor="let course of listCourses | slice: start:end">
+            <div [routerLink]="['/courses/', course.slug]">
+                <div class="listing-item-style">
+                    <div class="overlay">
+                        <div class="hover">
+                            <i class="material-icons">play_arrow</i> XEM NGAY
+                        </div>
+                    </div>
+                    <img [src]="course?.imageUrl" [alt]="course?.name" />
+                    <h6>{{ course?.name }}</h6>
+                    <p class="rate">
+                        <i class="material-icons">star</i><span>{{ course?.rateAvg }}</span> /5
+                    </p>
+                    <p class="year">
+                        <span>{{ course?.createdAt | date: "yyyy" }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="listCourses.length <=0 ">
+        <div>
+            <h2>Không có khoá học nào!</h2>
+        </div>
+    </ng-container>
+    <mat-paginator *ngIf="listCourses.length > 0" [length]="totalResults" [pageSize]="6" (page)="changePage($event)"></mat-paginator>
+</div>
