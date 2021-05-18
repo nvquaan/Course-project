@@ -17,7 +17,7 @@ form {
   }
   
   /* Set a style for all buttons */
-  button {
+  .btn-register {
     background-color: #04AA6D;
     color: white;
     padding: 14px 20px;
@@ -27,11 +27,20 @@ form {
     width: 100%;
   }
   
-  /* Add a hover effect for buttons */
-  button:hover {
+  /* Add a hover effect for .btn-registers */
+  .btn-register:hover {
     opacity: 0.8;
   }
-  
+  .close-btn {
+    position: absolute;
+    right: 19px;
+    top: 11px;
+    background: #b99898;
+    font-size: 18px;
+    border: none;
+    font-weight: 600;
+    border-radius: 50%;
+  }
   /* Extra style for the cancel button (red) */
   .cancelbtn {
     width: auto;

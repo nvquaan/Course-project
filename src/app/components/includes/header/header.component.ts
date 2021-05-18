@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
 
     onClickSignUp() {
         this.dialog.open(RegisterComponent, {
-            height: '500px',
+            height: '700px',
             width: '400px',
         }).afterClosed().subscribe(res => {
             if (res) {

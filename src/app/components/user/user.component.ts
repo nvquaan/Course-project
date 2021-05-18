@@ -7,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
     courses;
+    user;
+    wallet;
     constructor() { }
 
     ngOnInit() {
         this.courses = JSON.parse(localStorage.getItem('bought'));
-
+        this.user = JSON.parse(localStorage.getItem('fullinfo'));
+        this.wallet = JSON.parse(localStorage.getItem('wallet'));
     }
 
 }

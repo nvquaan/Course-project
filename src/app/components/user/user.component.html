@@ -9,20 +9,20 @@
 
   <div class="row mb-4">
     <div class="col-xl-5 card">
-      <div class="card-user">
+      <div *ngIf="user" class="card-user">
         <div class="cover">
           <img
             src="https://image.flaticon.com/icons/png/512/194/194938.png"
             alt=""
           />
         </div>
-        <h3>Nguyễn Văn Quân</h3>
-        <p class="role">🤝Admin🤝</p>
-        <p class="age">Nam ※ 21 tuổi</p>
+        <h3>{{user.fullname}}</h3>
+        <p class="role">🤝{{user.roles[0]}}🤝</p>
+        <p class="age">{{user.gender}} ※ {{user.age}} tuổi</p>
         <div>
-          <span>📧 quan.ng99@gmail.com</span> | <span>📞 0123456789</span>
+          <span>📧 {{user.email}}</span> | <span>📞 {{user.phone}}</span>
         </div>
-        <p class="wallet">💳 10,000,000vnđ</p>
+        <p class="wallet">💳 {{wallet | numberWithCommas}}vnđ</p>
         <div class="footer"></div>
       </div>
     </div>

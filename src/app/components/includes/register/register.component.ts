@@ -21,17 +21,21 @@ export class RegisterComponent implements OnInit {
         this.signUpForm = this.fb.group({
             username: "",
             email: "",
+            fullname: "",
+            age: "",
+            gender: "",
+            phone: "",
             password:"",
-            rememberMe: true,
         });
     }
 
     onClick(formValue){
-        let params: HttpParams = new HttpParams();
-        params = params.set('username', formValue.username);
-        params = params.set('email', formValue.email);
-        params = params.set('password', formValue.password);
-
+        console.log(formValue);
+        // let params: HttpParams = new HttpParams();
+        // params = params.set('username', formValue.username);
+        // params = params.set('email', formValue.email);
+        // params = params.set('password', formValue.password);
+        let params = formValue;
         this.userService.signup(params).subscribe((res:any) => {
             if (res.success == true) {
                 this.dialogRef.close(true);

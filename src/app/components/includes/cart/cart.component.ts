@@ -14,8 +14,11 @@ export class CartComponent implements OnInit {
     constructor(private courseSV: CoursesService, private userService: UserService, private toastrService: ToastrService) { }
     courses = [];
     total;
+    wallet;
     ngOnInit() {
         this.getCourses();
+        this.wallet = +localStorage.getItem('wallet');
+        console.log(this.wallet);
     }
 
     getCourses() {
@@ -40,25 +43,29 @@ export class CartComponent implements OnInit {
     }
 
     onClickBuy() {
-        let date =  moment(new Date()).format('DD/MM/YYYY');
-        let coursesId = this.courses.map(c => c._id);
-        let params = {
-            coursesId: coursesId,
-            total: this.total,
-            username: localStorage.getItem('username'),
-            date: date
-        };
-        this.userService.buyCourses(params).subscribe((res: any) => {
-            if(res.success == true) {
-                this.toastrService.success('Mua khoá học thành công');
-                this.userService.wallet.next(res.data.wallet);
-                let c = JSON.parse(localStorage.getItem('cart'));
-                c.courses = [];
-                localStorage.setItem('cart', JSON.stringify(c));
-                this.getCourses();
-                console.log(res);
-                window.location.reload();
-            }
-        })
+        if (this.wallet < this.total) {
+            this.toastrService.error('Bạn không đủ tiền để mua 😥');
+        }
+        else {
+            let date = moment(new Date()).format('DD/MM/YYYY');
+            let coursesId = this.courses.map(c => c._id);
+            let params = {
+                coursesId: coursesId,
+                total: this.total,
+                username: localStorage.getItem('username'),
+                date: date
+            };
+            this.userService.buyCourses(params).subscribe((res: any) => {
+                if (res.success == true) {
+                    this.toastrService.success('Mua khoá học thành công');
+                    this.userService.wallet.next(res.data.wallet);
+                    let c = JSON.parse(localStorage.getItem('cart'));
+                    c.courses = [];
+                    localStorage.setItem('cart', JSON.stringify(c));
+                    this.getCourses();
+                    window.location.reload();
+                }
+            })
+        }
     }
 }

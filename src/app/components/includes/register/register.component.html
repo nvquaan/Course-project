@@ -1,19 +1,30 @@
-<form [formGroup]="signUpForm" style="width:100%; margin:auto;">  
-    <div style="background-color: #7a7b77;">
+<form [formGroup]="signUpForm" style="width:100%; margin:auto;">
+    <div style="background-color: #7a7b77; position: relative;">
         <div class="container">
-            <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="username" required formControlName="username">
+            <label for="username"><b>Tên đăng nhập</b></label>
+            <input type="text" placeholder="Nhập tên đăng nhập" name="username" required formControlName="username">
             <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter Email" name="email" required formControlName="email">
-            <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" required formControlName="password">
-        
-            <button type="submit" (click)="onClick(signUpForm.value)">Login</button>
-          </div>
-        
-          <div class="container" style="background-color:#f1f1f1">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
-          </div>
+            <input type="text" placeholder="Nhập email" name="email" required formControlName="email">
+            <label for="fullname"><b>Họ và tên</b></label>
+            <input type="text" placeholder="Nhập họ tên đầy đủ" name="fullname" formControlName="fullname">
+            <label for="age"><b>Tuổi</b></label>
+            <input type="text" placeholder="Nhập tuổi" name="age" formControlName="age">
+            <div class="d-flex justify-content-around">
+                <div>
+                    <input type="radio" id="male" name="gender" value="male" formControlName="gender">
+                    <label for="male">Nam</label>
+                </div>
+                <div>
+                    <input type="radio" id="female" name="gender" value="female" formControlName="gender">
+                    <label for="female">Nữ</label>
+                </div>
+            </div>
+            <label for="phone"><b>Số điện thoại</b></label>
+            <input type="text" placeholder="Nhập SĐT" name="phone" formControlName="phone">
+            <label for="password"><b>Mật khẩu</b></label>
+            <input type="password" placeholder="Nhập mật khẩu" name="password" required formControlName="password">
+            <button class="btn-register" type="submit" (click)="onClick(signUpForm.value)">ĐĂNG KÝ</button>
+        </div>
+        <button class="close-btn">X</button>
     </div>
-  </form>
+</form>

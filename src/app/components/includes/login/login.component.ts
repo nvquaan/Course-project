@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('username', res.data.username);
                 localStorage.setItem('idUser', res.data.id);
                 localStorage.setItem('wallet', res.data.wallet);
-                // this.userService.wallet.next(res.data.wallet);
                 localStorage.setItem('bought', JSON.stringify(res.data.courses));
+                localStorage.setItem('fullinfo', JSON.stringify(res.data));
                 let cart = {
                     username: res.data.username,
                     courses: [],
