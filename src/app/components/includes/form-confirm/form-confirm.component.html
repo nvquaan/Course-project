@@ -1,18 +1,18 @@
 <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Thông báo</h5>
+        <h5 class="modal-title">📢Thông báo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeDialog()"> 
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <p class="form-content">{{data?.content}}</p>
-        <textarea *ngIf="data.showTextArea" rows="3" [(ngModel)]="message"></textarea>
+        <textarea *ngIf="data.showTextArea" rows="3" [(ngModel)]="message" placeholder="Nhập bình luận gì đó..."></textarea>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="confirmDialog()">Đồng ý</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeDialog()">Huỷ</button>
+        <button type="button" class="btn-accept" (click)="confirmDialog()">✔ Đồng ý</button>
+        <button type="button" class="btn-cancel" data-dismiss="modal" (click)="closeDialog()">✖ Huỷ</button>
       </div>
     </div>
   </div>

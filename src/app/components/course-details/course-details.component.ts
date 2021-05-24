@@ -8,6 +8,7 @@ import { CoursesService } from 'src/app/service/courses.service';
 import { HttpParams } from '@angular/common/http';
 import { ToastrService } from "ngx-toastr";
 import { FormConfirmComponent } from '../includes/form-confirm/form-confirm.component';
+import { delay } from 'rxjs/internal/operators/delay';
 
 @Component({
     selector: 'app-course-details',
@@ -28,6 +29,7 @@ export class CourseDetailsComponent implements OnInit {
     currentRate = 0;
     btnCart: number; // 1: da them vao gio 2: chua them 3: da mua
     bought: boolean;
+    loader = true;
     constructor(
         private movieService: MoviesService,
         private router: ActivatedRoute,
@@ -55,9 +57,10 @@ export class CourseDetailsComponent implements OnInit {
         ];
     }
     slugCourse;
-    course;
+    course = null;
     ngOnInit() {
         this.router.params.subscribe((params: Params) => {
+            this.loader = true;
             this.slugCourse = params['slug'];
             this.getCast(this.id);
 
@@ -69,7 +72,7 @@ export class CourseDetailsComponent implements OnInit {
     }
 
     getSingleCourse(slugCourse) {
-        this.courseSV.getCourse(slugCourse).subscribe((res: any) => {
+        this.courseSV.getCourse(slugCourse).pipe(delay(500)).subscribe((res: any) => {
             if (res.success == true) {
                 this.course = res.data;
                 //check xem khoa hoc nay da mua chua
@@ -92,7 +95,7 @@ export class CourseDetailsComponent implements OnInit {
             return false;
         }
     }
-    lessons;
+    lessons = null;
     getAllLessonsOfCourse(slugCourse) {
         this.courseSV.getAllLessonsOfCourse(slugCourse).subscribe((res: any) => {
             if (res.success == true) {
@@ -193,7 +196,6 @@ export class CourseDetailsComponent implements OnInit {
     }
     checkCart() {
         let cart = JSON.parse(localStorage.getItem('cart'));
-        console.log(cart);
         if (cart) {
             let course = this.course;
             let index = cart.courses.findIndex(x => x._id == course._id);
@@ -232,11 +234,12 @@ export class CourseDetailsComponent implements OnInit {
         }
     }
 
-    recomendCourses
+    recomendCourses = null;
     getRecomendCourses() {
-        this.courseSV.getAllCourses().subscribe((res: any) => {
+        this.courseSV.getAllCourses().pipe(delay(500)).subscribe((res: any) => {
             if (res.success == true) {
                 this.recomendCourses = res['data'];
+                this.loader = false;
             }
         })
     }

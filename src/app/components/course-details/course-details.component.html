@@ -1,4 +1,5 @@
-<div class="hero">
+<app-skeleton *ngIf="loader"></app-skeleton>
+<div *ngIf="!loader" class="hero">
     <div class="backdrop" [style.background-image]="'url(' + course?.imageUrl + ')'">
         <!-- <div class="lazyloaded">
             <button class="play" type="button" (click)="openDialogMovie(this.video)">
@@ -37,7 +38,7 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div *ngIf="!loader" class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <mat-tab-group class="mt-5 mb-5" mat-align-tabs="center" animationDuration="0ms">
@@ -125,7 +126,7 @@
                         </div>
                     </div>
 
-                    <div class="listing-space">
+                    <!-- <div class="listing-space">
                         <div class="listing__head">
                             <h2 class="listing__title">Giảng viên</h2>
                         </div>
@@ -143,7 +144,7 @@
                                 </div>
                             </ng-template>
                         </p-carousel>
-                    </div>
+                    </div> -->
 
                 </mat-tab>
                 <mat-tab *ngIf="bought" label="Bài học">

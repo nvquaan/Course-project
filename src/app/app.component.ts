@@ -10,7 +10,7 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'FlixMovies';
+    title = 'Courses Online';
     loading = false;
     color: ThemePalette = 'warn';
     mode: ProgressSpinnerMode = 'indeterminate';
@@ -24,7 +24,7 @@ export class AppComponent {
             } else if (event instanceof NavigationEnd) {
                 setTimeout(() => {
                     this.loading = false;
-                }, 1000);
+                }, 3000);
             }
         });
     }
