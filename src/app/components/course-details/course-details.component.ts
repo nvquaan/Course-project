@@ -138,7 +138,7 @@ export class CourseDetailsComponent implements OnInit {
                 height: '600px',
                 width: '900px',
                 data: {
-                    content: 'Bạn có muốn thay đổi vote?',
+                    content: 'Bạn có muốn THAY ĐỔI vote?',
                     showTextArea: true
                 }
             }).afterClosed().subscribe(res => {

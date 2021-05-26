@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-    courses;
+    courses=[];
     user;
     wallet;
     constructor() { }
@@ -14,7 +14,6 @@ export class UserComponent implements OnInit {
     ngOnInit() {
         this.courses = JSON.parse(localStorage.getItem('bought'));
         this.user = JSON.parse(localStorage.getItem('fullinfo'));
-        console.log(this.user);
         this.wallet = JSON.parse(localStorage.getItem('wallet'));
     }
 

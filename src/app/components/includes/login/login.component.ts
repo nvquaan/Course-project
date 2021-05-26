@@ -57,5 +57,8 @@ export class LoginComponent implements OnInit {
         })
     }
 
+    onClose(){
+        this.dialogRef.close(false);
+    }
     
 }
