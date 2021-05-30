@@ -13,8 +13,7 @@ label {
     margin-top: 13px;
 }
 /* Full-width inputs */
-input[type="text"],
-input[type="password"] {
+input {
     background-color: #eaeaea;
     border: 1px solid #dec4c4;
     width: 100%;
@@ -38,7 +37,7 @@ h2 {
     text-shadow: 0px 5px 6px #a08b8b;
 }
 /* Set a style for all buttons */
-.btn-login {
+.btn-forget {
     font-size: 16px;
     border-radius: 10px;
     height: 47px;
@@ -55,16 +54,6 @@ h2 {
     right: 5px;
     background: none;
     font-size: 25px;
-}
-.btn-forget{
-    font-size: 16px;
-    border-radius: 10px;
-    height: 47px;
-    color: white;
-    font-weight: 600;
-    width: 100%;
-    background-color: #7f6e6dc9;
-    margin-top: 12px;
 }
 /* Add padding to containers */
 .container {

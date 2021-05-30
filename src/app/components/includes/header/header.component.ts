@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
 
     onClickSignIn() {
         this.dialog.open(LoginComponent, {
-            height: '450px',
+            height: '500px',
             width: '400px',
         }).afterClosed().subscribe(res => {
             if (res) {

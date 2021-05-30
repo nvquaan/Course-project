@@ -25,6 +25,7 @@ import { RegisterComponent } from './components/includes/register/register.compo
 import { FormConfirmComponent } from './components/includes/form-confirm/form-confirm.component';
 import { CartComponent } from './components/includes/cart/cart.component';
 import { UserComponent } from './components/user/user.component';
+import { ForgetComponent } from './components/includes/forget/forget.component';
 
 
 
@@ -40,12 +41,14 @@ import { UserComponent } from './components/user/user.component';
         FormConfirmComponent,
         CartComponent,
         UserComponent,
+        ForgetComponent
     ],
     entryComponents: [
         RegisterComponent,
         LoginComponent,
         FormConfirmComponent,
         CartComponent,
+        ForgetComponent
       ],
     imports: [
         BrowserModule,

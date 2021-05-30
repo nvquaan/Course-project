@@ -8,6 +8,7 @@
             <label for="password">Mật khẩu</label>
             <input type="password" placeholder="Enter Password" name="password" required formControlName="password" />
             <button class="btn-login" type="submit" (click)="onClick(signInForm.value)">Đăng nhập</button>
+            <button class="btn-forget" type="submit" (click)="forgetPassword()">Quên mật khẩu</button>
             <button class="btn-close" (click)="onClose()">✖</button>
         </div>
     </div>

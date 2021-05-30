@@ -19,4 +19,7 @@ export class UserService extends ApiService {
     public buyCourses(params: any){
         return this.post(this.apiURL + '/courses/buy', params);
     }
+    public forgetPassword(params: any){
+        return this.post(this.apiURL + '/auth/forget-password', params);
+    }
 }
