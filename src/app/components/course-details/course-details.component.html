@@ -77,9 +77,11 @@
                                             Giá
                                         </div>
                                         <div class="value" style="font-size:20px; font-weight:600; color: #ffa6a6;">
-                                            {{ course?.cost | numberWithCommas }}vnđ 
-                                            <button *ngIf="btnCart==2 || !btnCart" class="btn-add-to-cart" (click)="onAddToCart()" style="background: none">➕</button>
-                                            <button *ngIf="btnCart==1" class="btn-remove-from-cart" (click)="onRemoveFromCart()" style="background: none">❌</button>
+                                            {{ course?.cost | numberWithCommas }}vnđ
+                                            <button *ngIf="btnCart==2 || !btnCart" class="btn-add-to-cart"
+                                                (click)="onAddToCart()" style="background: none">➕</button>
+                                            <button *ngIf="btnCart==1" class="btn-remove-from-cart"
+                                                (click)="onRemoveFromCart()" style="background: none">❌</button>
                                             <button *ngIf="btnCart==3" style="background: none">✅</button>
                                         </div>
                                     </li>
@@ -118,7 +120,8 @@
                                                     <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
                                                 </span>
                                             </ng-template>
-                                            <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="false" [max]="5" (rateChange)="onRateChange(currentRate)"></ngb-rating>
+                                            <ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="false"
+                                                [max]="5" (rateChange)="onRateChange(currentRate)"></ngb-rating>
                                         </div>
                                     </li>
                                 </ul>
@@ -193,7 +196,18 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="Bình luận">
-                    <app-comment *ngFor="let rate of rates" [rateData]="rate" (delete)="deleteRate($event)"></app-comment>
+                    <ng-container *ngIf="rates.length">
+                        <app-comment *ngFor="let rate of rates" [rateData]="rate" (delete)="deleteRate($event)">
+                        </app-comment>
+                    </ng-container>
+                    <ng-container *ngIf="!rates.length">
+                        <div class="container mt-3">
+                            <div class="text-center mt-4">
+                                <img src="../../../assets/images/empty-rate.png" alt="" style="width: 150px">
+                            </div>
+                            <h2 class="text-empty mt-4">Khoá học này chưa có bình luận nào!</h2>
+                        </div>
+                    </ng-container>
                 </mat-tab>
             </mat-tab-group>
 
@@ -202,8 +216,8 @@
                 <div class="listing__head">
                     <h2 class="listing__title">Một số khoá học gợi ý</h2>
                 </div>
-                <p-carousel [value]="recomendCourses" [numVisible]="6" [autoplayInterval]="4000" [numScroll]="4" [circular]="false"
-                    [responsiveOptions]="responsiveOptions">
+                <p-carousel [value]="recomendCourses" [numVisible]="6" [autoplayInterval]="4000" [numScroll]="4"
+                    [circular]="false" [responsiveOptions]="responsiveOptions">
                     <ng-template let-course pTemplate="item">
                         <div class="listing-item-style" [routerLink]="['/courses/', course.slug]">
                             <div class="overlay">

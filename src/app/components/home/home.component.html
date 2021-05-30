@@ -14,7 +14,7 @@
     <p-carousel [value]="listCategories" [numVisible]="4" [autoplayInterval]="2000" [numScroll]="1" [circular]="false" *ngIf="!loader"
         [responsiveOptions]="responsiveOptions">
         <ng-template let-category pTemplate="item">
-            <div class="listing-item-style" [routerLink]="['/categories/', category.slug]">
+            <div class="listing-item-style" [routerLink]="['/courses']" [queryParams]="{category: category.slug}">
                 <div class="overlay">
                     <div class="hover"><i class="material-icons">play_arrow</i> XEM NGAY</div>
                 </div>
@@ -22,8 +22,8 @@
                     [src]="category.imageUrl" style="height: 210px;">
                 <img *ngIf="!category?.imageUrl" src="assets/images/default-movie.png" style="height: 210px;">
                 <h6>{{ category?.name }}</h6>
-                <p class="rate"><i class="material-icons">star</i><span>{{category?.vote_average}}</span> /10</p>
-                <p class="year"><span>{{category?.release_date | date: 'yyyy'}}</span>
+                <!-- <p class="rate"><i class="material-icons">star</i><span>{{category?.vote_average}}</span> /10</p> -->
+                <p class="year"><span>{{category?.createdAt | date: 'yyyy'}}</span>
                 </p>
             </div>
         </ng-template>
@@ -48,7 +48,7 @@
                 <img [src]="course.imageUrl" style="height: 370px;">
                 <h6>{{ course?.name }}</h6>
                 <p class="rate"><i class="material-icons">star</i><span>{{course?.rateAvg}}</span>/5</p>
-                <p class="cost"><span>{{course?.cost | numberWithCommas}}đ</span>
+                <p class="cost"><span>💸{{course?.cost | numberWithCommas}}đ</span>
             </div>
         </ng-template>
     </p-carousel>

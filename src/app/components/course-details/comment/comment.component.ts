@@ -15,7 +15,7 @@ export class CommentComponent implements OnInit {
     ngOnInit() {
         this.roles = JSON.parse(localStorage.getItem('roles'));
         if (this.roles) {
-            this.canDelete = this.roles.includes('ROLE_ADMIN' || 'ROLE_MODERATOR');
+            this.canDelete = this.roles.includes('ROLE_MODERATOR' || 'ROLE_ADMIN');
         }
         else {
             this.canDelete = false;

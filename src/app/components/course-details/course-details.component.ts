@@ -182,17 +182,27 @@ export class CourseDetailsComponent implements OnInit {
         }
     }
     deleteRate(id) {
-        this.courseSV.deleteRate(this.slugCourse, id).subscribe((res: any) => {
-            if (!res.success && res.code === 400) {
-                this.toastrService.error('Bạn không có quyền thực hiện hành động này 😒');
-
+        this.dialog.open(FormConfirmComponent, {
+            height: '600px',
+            width: '900px',
+            data: {
+                content: 'Bạn có muốn xoá đánh giá này? Điều này không thể khôi phục',
+                showTextArea: false
             }
-            if (res.success == true) {
-                this.toastrService.success('Xoá vote thành công 👌');
-                this.getAllRatesOfCourse(this.slugCourse);
-            }
-        });
+        }).afterClosed().subscribe(res => {
+            if (res) {
+                this.courseSV.deleteRate(this.slugCourse, id).subscribe((res: any) => {
+                    if (!res.success && res.code === 400) {
+                        this.toastrService.error('Bạn không có quyền thực hiện hành động này 😒');
 
+                    }
+                    if (res.success == true) {
+                        this.toastrService.success('Xoá vote thành công 👌');
+                        this.getAllRatesOfCourse(this.slugCourse);
+                    }
+                });
+            }
+        })
     }
     checkCart() {
         let cart = JSON.parse(localStorage.getItem('cart'));
