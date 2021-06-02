@@ -3,13 +3,19 @@
     display: inline-block;
     font-size: 3rem;
     color: #d3d3d3;
-  }
-  .full {
+}
+.full {
     color: red;
-  }
-  .half {
+}
+.half {
     position: absolute;
     display: inline-block;
     overflow: hidden;
     color: red;
-  }
+}
+.text-empty {
+    text-align: center;
+    color: #d09a9a;
+    margin-bottom: 50px;
+
+}

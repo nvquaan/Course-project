@@ -1,17 +1,55 @@
 * {
     font-size: 18px;
+    font-family: "Dosis";
 }
-.modal-title {
-    color: black;
-}
-.modal-body {
-    p {
-        color: black;
-        font-size: 18px;
+.modal-header {
+    background-color: #dc8890;
+    .modal-title {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 20px;
     }
 }
-.modal-footer{
+
+.modal-body {
+    background-color: #ecdddd;
+    p {
+        color: #2d2b2b;
+        font-weight: 600;
+        font-size: 18px;
+    }
+    textarea {
+        background-color: #eaeaea;
+        border: 1px solid #dec4c4;
+        width: 100%;
+        padding-top: 11px;
+        padding-left: 10px;
+        font-size: 17px;
+        border-radius: 13px;
+        &:focus-visible {
+            outline: none;
+        }
+    }
+}
+.modal-footer {
+    background-color: #ecdddd;
+    border-top: 1px solid #ecdddd;
     button {
         font-size: 16px;
+        border-radius: 10px;
+        height: 42px;
+        color: white;
+        font-weight: 600;
+
+        &.btn-accept {
+            width: 95px;
+            background-color: #ad6d69c9;
+            margin-right: 14px;
+        }
+        &.btn-cancel {
+            width: 68px;
+            background-color: #7b6b6b;
+        }
     }
 }

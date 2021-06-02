@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { delay } from 'rxjs/internal/operators/delay';
 import { CoursesService } from 'src/app/service/courses.service';
 
@@ -13,8 +14,9 @@ export class CoursesComponent implements OnInit {
     loader = true;
     totalResults: any;
     searchStr: string;
-
-    constructor(private courseSV: CoursesService) {
+    categories = [];
+    categorySlug;
+    constructor(private courseSV: CoursesService, private activatedRoute: ActivatedRoute, private router: Router) {
         this.responsiveOptions = [
             {
                 breakpoint: '1024px',
@@ -35,7 +37,16 @@ export class CoursesComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getAllHotCourses();
+        this.getAllCategories();
+        this.activatedRoute.queryParams.subscribe(params => {
+            if(params.category){
+                this.categorySlug = params.category
+                this.getCoursesByCategorySlug(this.categorySlug);
+            }
+            else {
+                this.getAllHotCourses();
+            }
+        })
     }
     listCourses = [];
     start = 0; end = 6;
@@ -47,6 +58,14 @@ export class CoursesComponent implements OnInit {
                 this.end = page * 6;
                 this.start = this.end - 6
                 this.loader = false;
+            }
+        })
+    }
+
+    getAllCategories() {
+        this.courseSV.getAllCategories().subscribe((res: any) => {
+            if (res.success == true && res.data.length > 0) {
+                this.categories = res.data;
             }
         })
     }
@@ -74,4 +93,23 @@ export class CoursesComponent implements OnInit {
         }
     }
 
+    filterCourses(value) {
+        
+        if (!value) {
+            this.router.navigate(['/courses']);
+        } else {
+            this.router.navigate(['/courses'], {queryParams: {category: value}});
+        }
+    }
+
+    getCoursesByCategorySlug(slug) {
+        this.loader = true;
+        this.courseSV.getAllCoursesOfCategory(slug).pipe(delay(800)).subscribe((res: any) => {
+            if (res.success == true) {
+                this.listCourses = res.data;
+                this.totalResults = this.listCourses.length;
+                this.loader = false;
+            }
+        });
+    }
 }

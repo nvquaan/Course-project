@@ -10,6 +10,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { PipeModule } from 'src/app/pipe/pipe.module';
 import { NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
 import { CommentComponent } from './comment/comment.component';
+import { SkeletonModule } from 'src/app/shared/skeleton/skeleton.module';
 @NgModule({
   declarations: [
     CourseDetailsComponent,
@@ -27,7 +28,8 @@ import { CommentComponent } from './comment/comment.component';
     MatDialogModule,
     MatIconModule,
     CarouselModule,
-    NgbRatingModule
+    NgbRatingModule,
+    SkeletonModule
   ],
 
 })

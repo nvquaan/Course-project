@@ -1,9 +1,10 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/service/user.service';
+import { ForgetComponent } from '../forget/forget.component';
 
 @Component({
     selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
         private fb: FormBuilder,
         public dialogRef: MatDialogRef<LoginComponent>,
         private toastrService: ToastrService,
+        private dialog: MatDialog,
         ) { }
 
     ngOnInit() {
@@ -57,5 +59,14 @@ export class LoginComponent implements OnInit {
         })
     }
 
+    onClose(){
+        this.dialogRef.close(false);
+    }
+    forgetPassword(){
+        this.dialog.open(ForgetComponent, {
+            height: '500px',
+            width: '400px',
+        })
+    }
     
 }

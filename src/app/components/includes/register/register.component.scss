@@ -1,84 +1,84 @@
 * {
     font-size: 1.4rem;
+    font-family: "Dosis";
 }
-/* Bordered form */
+h2 {
+    font-size: 33px;
+    text-align: center;
+    font-weight: 900;
+    margin-bottom: 7px;
+    color: #5d4646;
+    text-shadow: 0px 5px 6px #a08b8b;
+}
 form {
     border: 3px solid #f1f1f1;
-  }
-  
-  /* Full-width inputs */
-  input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  
-  /* Set a style for all buttons */
-  .btn-register {
-    background-color: #04AA6D;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-  }
-  
-  /* Add a hover effect for .btn-registers */
-  .btn-register:hover {
-    opacity: 0.8;
-  }
-  .close-btn {
-    position: absolute;
-    right: 19px;
-    top: 11px;
-    background: #b99898;
-    font-size: 18px;
-    border: none;
+}
+label {
+    color: #2d2b2b;
     font-weight: 600;
-    border-radius: 50%;
-  }
-  /* Extra style for the cancel button (red) */
-  .cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-  }
-  
-  /* Center the avatar image inside this container */
-  .imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-  }
-  
-  /* Avatar image */
-  img.avatar {
-    width: 40%;
-    border-radius: 50%;
-  }
-  
-  /* Add padding to containers */
-  .container {
+    font-size: 18px;
+    margin-top: 2px;
+    min-width: 95px;
+    display: flex;
+    align-items: center;
+}
+
+fieldset {
+    border: 1px solid #dabfbf;
+    margin-bottom: 14px;
+    legend {
+        color: black;
+        font-weight: bold;
+        font-style: italic;
+        width: fit-content;
+        padding: 0px 11px;
+        text-transform: uppercase;
+    }
+}
+
+/* Full-width inputs */
+input[type="text"],
+input[type="password"] {
+    background-color: #eaeaea;
+    border: 1px solid #dec4c4;
+    width: 100%;
+    padding-top: 11px;
+    padding-left: 10px;
+    font-size: 17px;
+    border-radius: 13px;
+    height: 47px;
+    padding-bottom: 9px;
+    &:focus-visible {
+        outline: none;
+        border: 3px solid #b7817d;
+    }
+}
+
+/* Set a style for all buttons */
+.btn-register {
+    font-size: 16px;
+    border-radius: 10px;
+    height: 47px;
+    color: white;
+    font-weight: 600;
+    width: 100%;
+    background-color: #ad6d69c9;
+    margin-top: 23px;
+}
+
+.btn-close {
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    background: none;
+    font-size: 25px;
+}
+
+/* Add padding to containers */
+.container {
     padding: 16px;
-  }
-  
-  /* The "Forgot password" text */
-  span.psw {
-    float: right;
-    padding-top: 16px;
-  }
-  
-  /* Change styles for span and cancel button on extra small screens */
-  @media screen and (max-width: 300px) {
-    span.psw {
-      display: block;
-      float: none;
-    }
-    .cancelbtn {
-      width: 100%;
-    }
-  }
-  
+    position: relative;
+    padding: 16px;
+    border: 10px solid #c5aaaa;
+    padding-top: 37px;
+}

@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { RegisterComponent } from '../register/register.component';
 import { CoursesService } from 'src/app/service/courses.service';
 import { HttpParams } from '@angular/common/http';
+import { Router } from "@angular/router"
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -17,7 +18,11 @@ export class HeaderComponent implements OnInit {
     isLoggedIn;
     countCart = 0;
     wallet;
-    constructor(private userService: UserService, private toastrService: ToastrService, private dialog: MatDialog, private courseSV: CoursesService,
+    constructor(private userService: UserService,
+        private toastrService: ToastrService,
+        private dialog: MatDialog,
+        private courseSV: CoursesService,
+        private router: Router
     ) {
 
     }
@@ -51,7 +56,7 @@ export class HeaderComponent implements OnInit {
 
     onClickSignIn() {
         this.dialog.open(LoginComponent, {
-            height: '450px',
+            height: '500px',
             width: '400px',
         }).afterClosed().subscribe(res => {
             if (res) {
@@ -65,8 +70,8 @@ export class HeaderComponent implements OnInit {
 
     onClickSignUp() {
         this.dialog.open(RegisterComponent, {
-            height: '700px',
-            width: '400px',
+            height: '900px',
+            width: '800px',
         }).afterClosed().subscribe(res => {
             if (res) {
                 this.dialog.closeAll();
@@ -78,8 +83,8 @@ export class HeaderComponent implements OnInit {
     onClickSignOut() {
         localStorage.clear();
         this.toastrService.success('Bạn đã đăng xuất 😥😥');
-        window.location.reload();
         this.isLoggedIn = false;
+        this.router.navigate(['/']);
     }
 
     checkCart() {

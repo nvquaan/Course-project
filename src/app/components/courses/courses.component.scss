@@ -1,12 +1,12 @@
-mat-paginator{
+mat-paginator {
     background: #212121;
 }
 
-mat-paginator{
+mat-paginator {
     color: #fff;
 }
 
-.searchdesign{
+.searchdesign {
     height: 44px;
     background: #212121;
     border: 1px solid #716e6e;
@@ -14,10 +14,21 @@ mat-paginator{
     font-size: 15px;
 }
 
-.btnDesign{
+.btnDesign {
     height: 44px;
     border-radius: 0;
     width: 55px;
     background: #dc4666;
     border: #dc4666;
+}
+.categories-select {
+    font-size: 16px;
+    select {
+        width: 100%;
+        height: 44px;
+        background: #212121;
+        border: 1px solid #716e6e;
+        color: #fff;
+        padding-left: 11px;
+    }
 }

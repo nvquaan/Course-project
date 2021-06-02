@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
     constructor(
         private userService: UserService,
         private fb: FormBuilder,
+        private toastrService: ToastrService,
         public dialogRef: MatDialogRef<RegisterComponent>,) { }
 
     ngOnInit() {
@@ -31,16 +32,18 @@ export class RegisterComponent implements OnInit {
 
     onClick(formValue){
         console.log(formValue);
-        // let params: HttpParams = new HttpParams();
-        // params = params.set('username', formValue.username);
-        // params = params.set('email', formValue.email);
-        // params = params.set('password', formValue.password);
         let params = formValue;
         this.userService.signup(params).subscribe((res:any) => {
             if (res.success == true) {
                 this.dialogRef.close(true);
             }
-            
+            else {
+                this.toastrService.error(res.message);
+            }
         })
+    }
+
+    onClose(){
+        this.dialogRef.close(false);
     }
 }

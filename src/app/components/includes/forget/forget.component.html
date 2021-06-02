@@ -1,0 +1,25 @@
+<form [formGroup]="forgetForm" style="width:100%; margin:auto;">
+    <div style="background-color: #ecdddd;">
+        <div class="container">
+            <h2>QUÊN MẬT KHẨU</h2>
+            <ng-container *ngIf="step == 1">
+                <label for="username">Nhập tên đăng nhập của bạn</label>
+                <input type="text" placeholder="Enter Username" name="username" required formControlName="username" />
+                <button class="btn-forget" type="submit" (click)="onClickGetVerifyNumber(forgetForm.value)">Lấy mã xác nhận</button>
+            </ng-container>
+            <ng-container *ngIf="step == 2">
+                <label for="username">Nhập mã xác thực có 4 chữ số</label>
+                <input type="number" placeholder="Enter number" name="number" required formControlName="verifyNumber" />
+                <button class="btn-forget" type="submit" (click)="onClickConfirmNumber(forgetForm.value)">Xác nhận</button>
+            </ng-container>
+            <ng-container *ngIf="step == 3">
+                <label for="username">Nhập mật khẩu mới</label>
+                <input type="password" placeholder="Enter password" name="password" required formControlName="newPassword" />
+                <label for="confirm-password">Xác nhận mật khẩu mới</label>
+                <input type="confirm-password" placeholder="Enter confirm-password" name="confirm-password" required formControlName="confirmPassword" />
+                <button class="btn-forget" type="submit" (click)="onClickSetNewPassword(forgetForm.value)">Xác nhận</button>
+            </ng-container>
+            <button class="btn-close" (click)="onClose()">✖</button>
+        </div>
+    </div>
+</form>

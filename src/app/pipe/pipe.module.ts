@@ -8,6 +8,7 @@ import { CharacterWithCommasPipe } from './character-with-commas.pipe';
 import { NumberWithDoubleDigitsPipe } from './number-with-double-digits.pipe';
 import { FullLanguagePipe } from './full-language.pipe';
 import { RelativeTimePipe } from './relative-time.pipe';
+import { GenderPipe } from './gender.pipe';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { RelativeTimePipe } from './relative-time.pipe';
     CharacterWithCommasPipe,
     NumberWithDoubleDigitsPipe,
     FullLanguagePipe,
-    RelativeTimePipe
+    RelativeTimePipe,
+    GenderPipe
   ],
   exports: [
     ElipsisPipe,
@@ -29,7 +31,9 @@ import { RelativeTimePipe } from './relative-time.pipe';
     CharacterWithCommasPipe,
     NumberWithDoubleDigitsPipe,
     FullLanguagePipe,
-    RelativeTimePipe
+    RelativeTimePipe,
+    GenderPipe
+    
   ],
   imports: [
     CommonModule

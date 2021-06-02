@@ -17,6 +17,14 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="categories-select">
+                    <select name="categories" id="categories" (change)="filterCourses($event.target.value)">
+                        <option value="">--- Danh mục khoá học ---</option>
+                        <option *ngFor="let category of categories" [value]="category.slug" [selected]="category.slug == categorySlug">{{category.name}}</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </form>
 
@@ -47,5 +55,6 @@
             <h2>Không có khoá học nào!</h2>
         </div>
     </ng-container>
-    <mat-paginator *ngIf="listCourses.length > 0" [length]="totalResults" [pageSize]="6" (page)="changePage($event)"></mat-paginator>
+    <mat-paginator *ngIf="listCourses.length > 0" [length]="totalResults" [pageSize]="6" (page)="changePage($event)">
+    </mat-paginator>
 </div>
