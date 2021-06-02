@@ -13,6 +13,9 @@ export class UserService extends ApiService {
     public signup(params: any){
         return this.post(this.apiURL + '/auth/signup', params);
     }
+    public verifySignup(queryParams){
+        return this.get(this.apiURL + '/auth/verify-signup', {params: queryParams});
+    }
     public checkSignin(username: any){
         return this.get(this.apiURL + '/auth/check-signin/' + username);
     }

@@ -1,48 +1,46 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xl-12">
-      <div class="heading">
-        <h1>THÔNG TIN TÀI KHOẢN</h1>
-      </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="heading">
+                <h1>THÔNG TIN TÀI KHOẢN</h1>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="row mb-4">
-    <div class="col-xl-5 card">
-      <div *ngIf="user" class="card-user">
-        <div class="cover">
-          <img
-            src="https://image.flaticon.com/icons/png/512/194/194938.png"
-            alt=""
-          />
-        </div>
-        <h3>{{user.fullname}}</h3>
-        <p class="role">🤝{{user.roles[0]}}🤝</p>
-        <p class="age">{{user.gender}} ※ {{user.age}} tuổi</p>
-        <div>
-          <span>📧 {{user.email}}</span> | <span>📞 {{user.phone}}</span>
-        </div>
-        <p class="wallet">💳 {{wallet | numberWithCommas}}vnđ</p>
-        <div class="footer"></div>
-      </div>
-    </div>
-    <div class="col-xl-7 list-courses">
-      <div *ngIf="courses" class="col-xl-12">
-        <div *ngFor="let item of courses" class="course-item d-flex">
-            <div class="col-xl-3">
-              <div class="course-image">
-                <img [src]="item.course?.imageUrl" alt=""/>
-              </div>
+    <div class="row mb-4">
+        <div class="col-xl-5 card">
+            <div *ngIf="user" class="card-user">
+                <div class="cover">
+                    <img src="https://image.flaticon.com/icons/png/512/194/194938.png" alt="" />
+                </div>
+                <h3>{{user.fullname}}</h3>
+                <p class="role">🤝{{user.roles[0]}}🤝</p>
+                <p class="age">{{user.gender}} ※ {{user.age}} tuổi</p>
+                <div>
+                    <span>📧 {{user.email}}</span> | <span>📞 {{user.phone}}</span>
+                </div>
+                <p class="wallet">💳 {{wallet | numberWithCommas}}vnđ</p>
+                <div class="footer"></div>
             </div>
-            <div class="course-content d-flex justify-content-between">
-              <div class="content-text">
-                <div><a class="name" [routerLink]="['/courses/', item.course.slug]">{{item.course.name}}</a></div>
-                <div class="course-value">💰 Giá mua: {{item.course.cost | numberWithCommas }}đ</div>
-                <p>📅 Ngày mua: {{item.date}}</p>
-              </div>
+        </div>
+        <div class="col-xl-7 list-courses">
+            <div *ngIf="courses" class="col-xl-12">
+                <div *ngFor="let item of courses" class="course-item d-flex">
+                    <div class="col-xl-3">
+                        <div class="course-image">
+                            <img [src]="item.course?.imageUrl" alt="" />
+                        </div>
+                    </div>
+                    <div class="course-content d-flex justify-content-between">
+                        <div class="content-text">
+                            <div><a class="name" [routerLink]="['/courses/', item.course.slug]">{{item.course.name}}</a>
+                            </div>
+                            <div class="course-value">💰 Giá mua: {{item.course.cost | numberWithCommas }}đ</div>
+                            <p>📅 Ngày mua: {{item.date}}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-      </div>
+        </div>
     </div>
-  </div>
 </div>

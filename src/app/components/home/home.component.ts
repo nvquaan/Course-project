@@ -3,6 +3,9 @@ import { MoviesService } from "src/app/service/movies.service";
 import { TvService } from "src/app/service/tv.service";
 import { delay } from "rxjs/internal/operators/delay";
 import { CoursesService } from "../../service/courses.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { UserService } from "src/app/service/user.service";
+import { ToastrService } from "ngx-toastr";
 @Component({
     selector: "app-home",
     templateUrl: "./home.component.html",
@@ -18,7 +21,11 @@ export class HomeComponent implements OnInit {
     constructor(
         private movies: MoviesService,
         private tv: TvService,
-        public courseSV: CoursesService
+        public courseSV: CoursesService, 
+        private activedRoute: ActivatedRoute,
+        public userService: UserService, 
+        private toastrService: ToastrService, 
+        private router: Router
     ) {
         this.responsiveOptions = [
             {
@@ -43,6 +50,16 @@ export class HomeComponent implements OnInit {
         // this.tvShow(1);
         this.getAllCategories();
         this.getAllHotCourses();
+        this.activedRoute.queryParams.subscribe(queryParams => {
+            if(queryParams.confirmToken){
+                this.userService.verifySignup({confirmToken:queryParams.confirmToken}).subscribe((res: any) => {
+                    if(res.success === true){
+                        this.toastrService.success('Xác nhận email thành công');
+                        this.router.navigate(['/']);
+                    }
+                })
+            }
+        })
     }
     trendingMovies(page: number) {
         this.movies
