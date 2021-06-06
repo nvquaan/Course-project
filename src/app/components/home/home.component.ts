@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
         ];
     }
     ngOnInit() {
+        //test
         this.getAllCategories();
         this.getAllHotCourses();
         this.activedRoute.queryParams.subscribe(queryParams => {
