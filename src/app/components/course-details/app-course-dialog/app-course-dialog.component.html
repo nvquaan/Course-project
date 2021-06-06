@@ -4,8 +4,8 @@
             <mat-icon class="cross-icon" (click)="closeDialog()">close</mat-icon>
         </a>
     </div>
-    <div *ngIf="data.video" class="video-movie-main">
-        <iframe [src]="data.video.imageUrl" width="100%" height="478px" frameborder="0" 
+    <div *ngIf="data.videoUrl" class="video-movie-main">
+        <iframe [src]="data.videoUrl" width="100%" height="478px" frameborder="0" 
         allow="autoplay; encrypted-media"
         allowfullscreen></iframe>
     </div>

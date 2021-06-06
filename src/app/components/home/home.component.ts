@@ -46,8 +46,6 @@ export class HomeComponent implements OnInit {
         ];
     }
     ngOnInit() {
-        // this.trendingMovies(1);
-        // this.tvShow(1);
         this.getAllCategories();
         this.getAllHotCourses();
         this.activedRoute.queryParams.subscribe(queryParams => {
@@ -61,29 +59,7 @@ export class HomeComponent implements OnInit {
             }
         })
     }
-    trendingMovies(page: number) {
-        this.movies
-            .getNowPlaying(page)
-            .pipe(delay(2000))
-            .subscribe((res: any) => {
-                this.nowPlaying = res.results;
-                this.loader = false;
-            });
-        // this.courseSV.getAllCategories().subscribe(res => {
-        //   this.nowPlaying = res.data;
-        //   res.data.forEach(d => console.log(d.name));
-        // })
-    }
 
-    tvShow(page: number) {
-        this.tv
-            .getTvOnTheAir(page)
-            .pipe(delay(2000))
-            .subscribe((res: any) => {
-                this.tvShows = res.results;
-                this.loader = false;
-            });
-    }
     listCategories;
     getAllCategories() {
         this.courseSV.getAllCategories().subscribe(res => {

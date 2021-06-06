@@ -16,7 +16,6 @@ import { delay } from 'rxjs/internal/operators/delay';
     styleUrls: ['./course-details.component.scss'],
 })
 export class CourseDetailsComponent implements OnInit {
-    public id: number = 460465;
     public video: boolean;
     movie: any;
     baseUrl = 'https://www.youtube.com/embed/';
@@ -62,8 +61,6 @@ export class CourseDetailsComponent implements OnInit {
         this.router.params.subscribe((params: Params) => {
             this.loader = true;
             this.slugCourse = params['slug'];
-            this.getCast(this.id);
-
             this.getSingleCourse(this.slugCourse);
             this.getAllLessonsOfCourse(this.slugCourse);
             this.getAllRatesOfCourse(this.slugCourse);
@@ -255,21 +252,23 @@ export class CourseDetailsComponent implements OnInit {
     }
 
 
-    openDialogMovie(video): void {
+    openDialogLesson(video): void {
         let a = { ...video };
         a['imageUrl'] = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + a.imageUrl + this.autoplay);
         this.dialog.open(AppCourseDialogComponent, {
             height: '600px',
             width: '900px',
-            data: { video: a }
+            data: { videoUrl: a['imageUrl'] }
         });
     }
 
-    getCast(id) {
-        this.movieService.getMovieCredits(id).subscribe((res: any) => {
-            this.casts = res.cast;
-        });
+    openDialogTrailerCourse(trailerUrl): void {
+        let a = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + trailerUrl + this.autoplay);
+        this.dialog.open(AppCourseDialogComponent, {
+            height: '600px',
+            width: '900px',
+            data: { videoUrl: a }
+        })
     }
-
 }
 

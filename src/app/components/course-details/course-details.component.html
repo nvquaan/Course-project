@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="desc">{{ course?.description }}</div>
-            <button type="button" class="button button--icon trailer" (click)="openDialogMovie(this.video)">
+            <button type="button" class="button button--icon trailer" (click)="openDialogTrailerCourse(course?.trailerUrl)">
                 <span class="mr-2"><img src="assets/images/play.svg"></span>
                 <span class="txt">Xem thử</span>
             </button>
@@ -154,7 +154,7 @@
                     <div class="listing-space videos__status">
                         <div class="items">
                             <div class="item" *ngFor="let list of lessons; let index = index">
-                                <div (click)="openDialogMovie(list)" class="link">
+                                <div (click)="openDialogLesson(list)" class="link">
                                     <div class="image lazyloaded">
                                         <img class="lazyload"
                                             src="https://img.youtube.com/vi/{{list?.imageUrl}}/mqdefault.jpg">
