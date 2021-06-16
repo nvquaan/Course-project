@@ -17,8 +17,8 @@ export class CoursesService extends ApiService {
     }
 
     //Tìm kiếm khoá Học
-    public searchCourses(params?: any) {
-        return this.post(this.apiURL + '/courses/search', params);
+    public searchCourses(data?: any) {
+        return this.post(this.apiURL + '/courses/search', data);
     }
     //Lấy các khoá học đã xoá
     public getAllDeletedCourses(params?: any) {
@@ -29,12 +29,12 @@ export class CoursesService extends ApiService {
         return this.get(this.apiURL + '/courses/' + slug);
     }
     //Rate 1 khoa hoc -> slug cua khoa hoc
-    public rateCourse(slug: any, params?: any) {
-        return this.put(this.apiURL + '/courses/rate/' + slug, params);
+    public rateCourse(slug: any, data?: any) {
+        return this.put(this.apiURL + '/courses/rate/' + slug, data);
     }
     //Update rate 1 khoa hoc
-    public updateRateCourse(slug: any, params?: any) {
-        return this.put(this.apiURL + '/courses/rate-edit/' + slug, params);
+    public updateRateCourse(slug: any, data?: any) {
+        return this.put(this.apiURL + '/courses/rate-edit/' + slug, data);
     }
     //Lấy tất cả đánh giá của khoá Học
     public getAllRates(slug: any, params?: any) {
@@ -47,6 +47,10 @@ export class CoursesService extends ApiService {
     // Lấy các danh mục khoá học
     public getAllCategories(params?: any) {
         return this.get(this.apiURL + '/categories', params);
+    }
+    //Tìm kiếm danh mục
+    public searchCategories(data?: any) {
+        return this.post(this.apiURL + '/categories/search', data);
     }
     //Lấy các khoá học của danh mục
     public getAllCoursesOfCategory(slug?: any) {

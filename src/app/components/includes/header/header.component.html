@@ -11,7 +11,7 @@
             <a class="nav-link" [routerLink]="['/courses']" routerLinkActive="router-link-active">Khoá học</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/tv']" routerLinkActive="router-link-active">Danh mục</a>
+            <a class="nav-link" [routerLink]="['/categories']" routerLinkActive="router-link-active">Danh mục</a>
         </li>
         <li *ngIf="!isLoggedIn" class="nav-item" style="background-color: #a78585;">
             <a class="nav-link" (click)="onClickSignIn()" routerLinkActive="router-link-active">Đăng nhập</a>
