@@ -22,7 +22,7 @@
 
     <app-skeleton *ngIf="loader"></app-skeleton>
     <div class="row" *ngIf="!loader">
-        <div class="col-md-2 listing__items" *ngFor="let category of categories | slice: start:end">
+        <div class="col-md-3 listing__items" *ngFor="let category of categories | slice: start:end">
             <div [routerLink]="['/courses/']" [queryParams]="{category: category.slug}">
                 <div class="listing-item-style">
                     <div class="overlay">

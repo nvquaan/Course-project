@@ -1,7 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { MoviesService } from "src/app/service/movies.service";
-import { TvService } from "src/app/service/tv.service";
-import { delay } from "rxjs/internal/operators/delay";
 import { CoursesService } from "../../service/courses.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { UserService } from "src/app/service/user.service";
@@ -13,14 +10,10 @@ import { ToastrService } from "ngx-toastr";
     encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-    nowPlaying: any;
-    tvShows: any;
     responsiveOptions;
     loader = true;
 
     constructor(
-        private movies: MoviesService,
-        private tv: TvService,
         public courseSV: CoursesService, 
         private activedRoute: ActivatedRoute,
         public userService: UserService, 

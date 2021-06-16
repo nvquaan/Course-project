@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, animate, style, state } from '@angular/animations';
-import { MoviesService } from 'src/app/service/movies.service';
 import { CoursesService } from 'src/app/service/courses.service';
 import { delay } from 'rxjs/internal/operators/delay';
 
@@ -17,27 +16,13 @@ import { delay } from 'rxjs/internal/operators/delay';
 })
 export class SliderComponent implements OnInit {
   current = 0;
-  // tslint:disable-next-line: variable-name
-  movies_data: any;
-  // tslint:disable-next-line: variable-name
-  tv_shows: any;
-
-
   constructor(
-    private movieService: MoviesService,
     private courseSV: CoursesService,
   ) { }
 
   ngOnInit() {
-    this.getnowPlayingMovies(1);
     this.getAllHotCourses();
     this.sliderTimer();
-  }
-
-  getnowPlayingMovies(page: number) {
-    this.movieService.getNowPlaying(page).pipe(delay(2000)).subscribe((res: any) => {
-      this.movies_data = res.results;
-    });
   }
 
   courses_data;

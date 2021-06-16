@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviesService } from 'src/app/service/movies.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
@@ -30,7 +29,6 @@ export class CourseDetailsComponent implements OnInit {
     bought: boolean;
     loader = true;
     constructor(
-        private movieService: MoviesService,
         private router: ActivatedRoute,
         private sanitizer: DomSanitizer,
         private dialog: MatDialog,
