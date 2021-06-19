@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { EditUserComponent } from '../includes/edit-user/edit-user.component';
 
 @Component({
     selector: 'app-user',
@@ -10,7 +12,7 @@ export class UserComponent implements OnInit {
     user;
     wallet;
     role;
-    constructor() { }
+    constructor(private dialog: MatDialog) { }
 
     ngOnInit() {
         this.courses = JSON.parse(localStorage.getItem('bought'));
@@ -25,5 +27,11 @@ export class UserComponent implements OnInit {
         if(user.roles.includes('ROLE_ADMIN')) return 'ADMIN';
         if(user.roles.includes('ROLE_MODERATOR')) return 'MODERATOR';
         if(user.roles.includes('ROLE_USER')) return 'USER';
+    }
+
+    onShowEdit() {
+        this.dialog.open(EditUserComponent, {
+            width: '800px',
+        })
     }
 }

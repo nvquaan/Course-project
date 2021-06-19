@@ -7,11 +7,11 @@ import { ApiService } from './api.service';
 export class UserService extends ApiService {
     wallet = new Subject<number>();
     apiURL: string = 'http://localhost:5008/api';
-    public signin(params: any){
-        return this.post(this.apiURL + '/auth/signin', params);
+    public signin(data: any){
+        return this.post(this.apiURL + '/auth/signin', data);
     }
-    public signup(params: any){
-        return this.post(this.apiURL + '/auth/signup', params);
+    public signup(data: any){
+        return this.post(this.apiURL + '/auth/signup', data);
     }
     public verifySignup(queryParams){
         return this.get(this.apiURL + '/auth/verify-signup', {params: queryParams});
@@ -19,10 +19,13 @@ export class UserService extends ApiService {
     public checkSignin(username: any){
         return this.get(this.apiURL + '/auth/check-signin/' + username);
     }
-    public buyCourses(params: any){
-        return this.post(this.apiURL + '/courses/buy', params);
+    public buyCourses(data: any){
+        return this.post(this.apiURL + '/courses/buy', data);
     }
-    public forgetPassword(params: any){
-        return this.post(this.apiURL + '/auth/forget-password', params);
+    public forgetPassword(data: any){
+        return this.post(this.apiURL + '/auth/forget-password', data);
+    }
+    public editUser(data: any) {
+        return this.post(this.apiURL + '/user/edit', data);
     }
 }

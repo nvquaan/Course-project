@@ -1,0 +1,89 @@
+* {
+    font-size: 1.4rem;
+    font-family: "Dosis";
+}
+h2 {
+    font-size: 33px;
+    text-align: center;
+    font-weight: 900;
+    margin-bottom: 7px;
+    color: #5d4646;
+    text-shadow: 0px 5px 6px #a08b8b;
+}
+form {
+    border: 3px solid #f1f1f1;
+}
+label {
+    color: #2d2b2b;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 2px;
+    min-width: 95px;
+    display: flex;
+    align-items: center;
+}
+.btn-2 {
+    padding: 8px 15px;
+    border-radius: 6px;
+    background: #9c9999;
+    color: white;
+}
+fieldset {
+    border: 1px solid #dabfbf;
+    margin-bottom: 14px;
+    legend {
+        color: black;
+        font-weight: bold;
+        font-style: italic;
+        width: fit-content;
+        padding: 0px 11px;
+        text-transform: uppercase;
+    }
+}
+
+/* Full-width inputs */
+input[type="text"],
+input[type="password"] {
+    background-color: #eaeaea;
+    border: 1px solid #dec4c4;
+    width: 100%;
+    padding-top: 11px;
+    padding-left: 10px;
+    font-size: 17px;
+    border-radius: 13px;
+    height: 47px;
+    padding-bottom: 9px;
+    &:focus-visible {
+        outline: none;
+        border: 3px solid #b7817d;
+    }
+}
+
+/* Set a style for all buttons */
+.btn-register {
+    font-size: 16px;
+    border-radius: 10px;
+    height: 47px;
+    color: white;
+    font-weight: 600;
+    width: 100%;
+    background-color: #ad6d69c9;
+    margin-top: 23px;
+}
+
+.btn-close {
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    background: none;
+    font-size: 25px;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+    position: relative;
+    padding: 16px;
+    border: 10px solid #c5aaaa;
+    padding-top: 37px;
+}

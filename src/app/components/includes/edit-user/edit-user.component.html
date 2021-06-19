@@ -1,0 +1,50 @@
+<form [formGroup]="userForm" style="width:100%; margin:auto;">
+    <div style="background-color: #ecdddd;; position: relative;">
+        <div class="container">
+            <h2>Sửa thông tin tài khoản</h2>
+            <fieldset>
+                <legend>Thông tin tài khoản</legend>
+                <div class="d-flex mb-3">
+                    <div class="d-flex" style="flex: 5;">
+                        <label for="fullname"><b>Họ và tên</b></label>
+                        <input type="text" placeholder="Nhập họ tên đầy đủ" name="fullname" formControlName="fullname">
+                    </div>
+                    <div class="d-flex justify-content-around flex-2" style="flex: 3;margin-right: -18px;">
+                        <div class="d-flex align-items-center">
+                            <input class="mr-2" type="radio" id="male" name="gender" value="male"
+                                formControlName="gender">
+                            <label for="male">Nam</label>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <input class="mr-2" type="radio" id="female" name="gender" value="female"
+                                formControlName="gender">
+                            <label for="female">Nữ</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="d-flex" style="flex: 1">
+                        <label for="age"><b>Tuổi</b></label>
+                        <input type="text" placeholder="Nhập tuổi" name="age" formControlName="age">
+                    </div>
+                    <div class="d-flex" style="flex: 1">
+                        <label class="ml-3" for="phone"><b>Số điện thoại</b></label>
+                        <input type="text" placeholder="Nhập SĐT" name="phone" formControlName="phone">
+                    </div>
+                </div>
+            </fieldset>
+            <div class="text-center">
+                <button *ngIf="!isChangePassword" class="btn-2" (click)="onOpenChangePasswordForm()">Đổi mật khẩu</button>
+            </div>
+            <fieldset *ngIf="isChangePassword">
+                <legend>Đổi mật khẩu</legend>
+                <label for="old-password"><b>Mật khẩu cũ</b></label>
+                <input type="password" placeholder="Nhập mật khẩu cũ" name="old-password" required formControlName="oldPassword">
+                <label for="new-password"><b>Mật khẩu mới</b></label>
+                <input type="password" placeholder="Nhập mật khẩu mới" name="new-password" required formControlName="newPassword">
+            </fieldset>
+            <button class="btn-register" type="submit" (click)="onClick(userForm.value)">THAY ĐỔI</button>
+            <button class="btn-close" (click)="onClose()">✖</button>
+        </div>
+    </div>
+</form>
