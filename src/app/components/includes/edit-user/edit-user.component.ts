@@ -26,6 +26,7 @@ export class EditUserComponent implements OnInit {
     ngOnInit() {
         this.data = this.dialogData;
         this.userForm = this.fb.group({
+            username: [this.data.username, Validators.compose([Validators.required])],
             fullname: [this.data.fullname, Validators.compose([Validators.required])],
             age: [this.data.age, Validators.compose([Validators.required])],
             gender: [this.data.gender, Validators.compose([Validators.required])],
@@ -36,7 +37,6 @@ export class EditUserComponent implements OnInit {
     }
 
     onClick(formValue){
-        console.log(formValue);
         this.dialog.open(FormConfirmComponent, {
             height: '600px',
             width: '900px',
@@ -46,8 +46,14 @@ export class EditUserComponent implements OnInit {
             }
         }).afterClosed().subscribe(res => {
             if(res) {
-                console.log(formValue);
-                this.userService.editUser(formValue).subscribe()
+                this.userService.editUser(formValue).subscribe((res: any) => {
+                    if(res.success === true) {
+                        this.toastrService.success(res.message);
+                        this.dialogRef.close(true);
+                    } else {
+                        this.toastrService.error(res.message);
+                    }
+                })
             }
         })
         

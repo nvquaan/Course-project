@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
                 this.wallet = res.data.wallet;
                 localStorage.setItem('wallet', this.wallet);
                 localStorage.setItem('bought', JSON.stringify(res.data.courses));
+                localStorage.setItem('fullinfo', JSON.stringify(res.data));
             }
             else {
                 this.isLoggedIn = false;
