@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { CoursesService } from 'src/app/service/courses.service';
 import { UserService } from 'src/app/service/user.service';
 import * as moment from 'moment';
+import { MatDialog } from '@angular/material';
+import { FormConfirmComponent } from '../form-confirm/form-confirm.component';
 @Component({
     selector: 'app-cart',
     templateUrl: './cart.component.html',
@@ -11,7 +13,7 @@ import * as moment from 'moment';
 })
 export class CartComponent implements OnInit {
 
-    constructor(private courseSV: CoursesService, private userService: UserService, private toastrService: ToastrService) { }
+    constructor(private courseSV: CoursesService, private userService: UserService, private toastrService: ToastrService, private dialog: MatDialog) { }
     courses = [];
     total;
     wallet;
@@ -47,23 +49,34 @@ export class CartComponent implements OnInit {
             this.toastrService.error('Bạn không đủ tiền để mua 😥');
         }
         else {
-            let date = moment(new Date()).format('DD/MM/YYYY');
-            let coursesId = this.courses.map(c => c._id);
-            let params = {
-                coursesId: coursesId,
-                total: this.total,
-                username: localStorage.getItem('username'),
-                date: date
-            };
-            this.userService.buyCourses(params).subscribe((res: any) => {
-                if (res.success == true) {
-                    this.toastrService.success('Mua khoá học thành công');
-                    this.userService.wallet.next(res.data.wallet);
-                    let c = JSON.parse(localStorage.getItem('cart'));
-                    c.courses = [];
-                    localStorage.setItem('cart', JSON.stringify(c));
-                    this.getCourses();
-                    window.location.reload();
+            this.dialog.open(FormConfirmComponent, {
+                height: '600px',
+                width: '900px',
+                data: {
+                    content: 'Bạn có muốn mua khoá học?',
+                    showTextArea: false
+                }
+            }).afterClosed().subscribe(res => {
+                if (res) {
+                    let date = moment(new Date()).format('DD/MM/YYYY');
+                    let coursesId = this.courses.map(c => c._id);
+                    let params = {
+                        coursesId: coursesId,
+                        total: this.total,
+                        username: localStorage.getItem('username'),
+                        date: date
+                    };
+                    this.userService.buyCourses(params).subscribe((res: any) => {
+                        if (res.success == true) {
+                            this.toastrService.success('Mua khoá học thành công');
+                            this.userService.wallet.next(res.data.wallet);
+                            let c = JSON.parse(localStorage.getItem('cart'));
+                            c.courses = [];
+                            localStorage.setItem('cart', JSON.stringify(c));
+                            this.getCourses();
+                            window.location.reload();
+                        }
+                    })
                 }
             })
         }

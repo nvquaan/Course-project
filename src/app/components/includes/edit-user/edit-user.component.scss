@@ -43,6 +43,7 @@ fieldset {
 
 /* Full-width inputs */
 input[type="text"],
+input[type="number"],
 input[type="password"] {
     background-color: #eaeaea;
     border: 1px solid #dec4c4;
@@ -60,7 +61,7 @@ input[type="password"] {
 }
 
 /* Set a style for all buttons */
-.btn-register {
+.btn-submit {
     font-size: 16px;
     border-radius: 10px;
     height: 47px;
@@ -69,6 +70,9 @@ input[type="password"] {
     width: 100%;
     background-color: #ad6d69c9;
     margin-top: 23px;
+    &[disabled] {
+        background-color: #c1b4b4;
+    }
 }
 
 .btn-close {

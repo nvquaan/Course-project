@@ -32,6 +32,7 @@ export class UserComponent implements OnInit {
     onShowEdit() {
         this.dialog.open(EditUserComponent, {
             width: '800px',
+            data: this.user,
         })
     }
 }
