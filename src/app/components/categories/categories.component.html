@@ -44,6 +44,6 @@
             <h2>Không có khoá học nào!</h2>
         </div>
     </ng-container>
-    <mat-paginator *ngIf="categories.length > 0" [length]="totalResults" [pageSize]="6" (page)="changePage($event)">
+    <mat-paginator *ngIf="categories.length > 0" [length]="totalResults" [pageSize]="20" (page)="changePage($event)">
     </mat-paginator>
 </div>

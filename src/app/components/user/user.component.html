@@ -11,8 +11,8 @@
         <div class="col-xl-5 card">
             <div *ngIf="user" class="card-user">
                 <div class="cover">
-                    <img src="https://image.flaticon.com/icons/png/512/194/194938.png" alt="" />
-                    
+                    <img src="https://image.flaticon.com/icons/png/512/194/194938.png" alt=""/>
+
                 </div>
                 <h6 class="mb-3"><i>username: {{user.username}}</i></h6>
                 <h3>{{user.fullname}} <span *ngIf="user.verified">✅</span></h3>
@@ -29,21 +29,24 @@
         </div>
         <div class="col-xl-7 list-courses">
             <div *ngIf="courses" class="col-xl-12">
-                <div *ngFor="let item of courses" class="course-item d-flex">
-                    <div class="col-xl-3">
-                        <div class="course-image">
-                            <img [src]="item.course?.imageUrl" alt="" />
-                        </div>
-                    </div>
-                    <div class="course-content d-flex justify-content-between">
-                        <div class="content-text">
-                            <div><a class="name" [routerLink]="['/courses/', item.course.slug]">{{item.course.name}}</a>
+                <ng-container *ngFor="let item of courses">
+                    <div *ngIf="item.course" class="course-item d-flex">
+                        <div class="col-xl-3">
+                            <div class="course-image">
+                                <img [src]="item.course?.imageUrl" alt=""/>
                             </div>
-                            <div class="course-value">💰 Giá mua: {{item.course.cost | numberWithCommas }}đ</div>
-                            <p>📅 Ngày mua: {{item.date}}</p>
+                        </div>
+                        <div class="course-content d-flex justify-content-between">
+                            <div class="content-text">
+                                <div><a class="name"
+                                        [routerLink]="['/courses/', item.course?.slug]">{{item.course?.name}}</a>
+                                </div>
+                                <div class="course-value">💰 Giá mua: {{item.course?.cost | numberWithCommas }}đ</div>
+                                <p>📅 Ngày mua: {{item.date}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </ng-container>
             </div>
         </div>
     </div>

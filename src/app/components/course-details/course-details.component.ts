@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatDialog } from '@angular/material';
-import { AppCourseDialogComponent } from '../course-details/app-course-dialog/app-course-dialog.component';
-import { CoursesService } from 'src/app/service/courses.service';
-import { HttpParams } from '@angular/common/http';
-import { ToastrService } from "ngx-toastr";
-import { FormConfirmComponent } from '../includes/form-confirm/form-confirm.component';
-import { delay } from 'rxjs/internal/operators/delay';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatDialog} from '@angular/material';
+import {AppCourseDialogComponent} from '../course-details/app-course-dialog/app-course-dialog.component';
+import {CoursesService} from 'src/app/service/courses.service';
+import {HttpParams} from '@angular/common/http';
+import {ToastrService} from 'ngx-toastr';
+import {FormConfirmComponent} from '../includes/form-confirm/form-confirm.component';
+import {delay} from 'rxjs/internal/operators/delay';
 
 @Component({
     selector: 'app-course-details',
@@ -28,6 +28,7 @@ export class CourseDetailsComponent implements OnInit {
     btnCart: number; // 1: da them vao gio 2: chua them 3: da mua
     bought: boolean;
     loader = true;
+
     constructor(
         private router: ActivatedRoute,
         private sanitizer: DomSanitizer,
@@ -53,8 +54,10 @@ export class CourseDetailsComponent implements OnInit {
             }
         ];
     }
+
     slugCourse;
     course = null;
+
     ngOnInit() {
         this.router.params.subscribe((params: Params) => {
             this.loader = true;
@@ -74,40 +77,45 @@ export class CourseDetailsComponent implements OnInit {
                 this.bought = this.checkBought();
                 if (this.bought) {
                     this.btnCart = 3;
-                }
-                else {
+                } else {
                     this.checkCart();
                 }
             }
-        })
+        });
     }
+
     checkBought() {
         let bought = JSON.parse(localStorage.getItem('bought'));
         if (bought && bought.length > 0) {
             return bought.find(c => c.course._id == this.course._id);
-        }
-        else {
+        } else {
             return false;
         }
     }
+
     lessons = null;
+
     getAllLessonsOfCourse(slugCourse) {
         this.courseSV.getAllLessonsOfCourse(slugCourse).subscribe((res: any) => {
             if (res.success == true) {
                 this.lessons = res.data;
             }
-        })
+        });
     }
+
     rates = [];
+
     getAllRatesOfCourse(slugCourse) {
         this.courseSV.getAllRates(slugCourse).subscribe((res: any) => {
             if (res.success == true) {
                 this.rates = res.data; //Lấy ra tất cả đánh giá của khoá Học
                 let rateData = this.checkVoted(this.rates);
+                console.log(rateData);
                 this.currentRate = rateData.rate;
             }
         });
     }
+
     checkVoted(rates) { //Hàm check user này đã đánh giá bài học này chưa. Nếu rồi trả về data rate
         const idUser = localStorage.getItem('idUser');
         // -> Lặp qua data, tìm giá trị rate của user đang đăng nhập
@@ -120,9 +128,11 @@ export class CourseDetailsComponent implements OnInit {
             return 0;
         }
     }
+
     onRateChange(rate) {
-        if (!rate)
+        if (!rate) {
             return;
+        }
         let params: HttpParams = new HttpParams();
         const idUser = localStorage.getItem('idUser');
         params = params.set('user', idUser);
@@ -144,15 +154,13 @@ export class CourseDetailsComponent implements OnInit {
                         if (res.success == true) {
                             this.toastrService.success('Update vote thành công 👍👍');
                             window.location.reload();
-                        }
-                        else {
+                        } else {
                             this.toastrService.error('Có lỗi xảy ra 😥');
                         }
-                    })
+                    });
                 }
-            })
-        }
-        else {
+            });
+        } else {
             this.dialog.open(FormConfirmComponent, {
                 height: '600px',
                 width: '900px',
@@ -171,11 +179,12 @@ export class CourseDetailsComponent implements OnInit {
                             this.toastrService.success('Vote thành công 👍👍');
                             window.location.reload();
                         }
-                    })
+                    });
                 }
-            })
+            });
         }
     }
+
     deleteRate(id) {
         this.dialog.open(FormConfirmComponent, {
             height: '600px',
@@ -197,20 +206,22 @@ export class CourseDetailsComponent implements OnInit {
                     }
                 });
             }
-        })
+        });
     }
+
     checkCart() {
         let cart = JSON.parse(localStorage.getItem('cart'));
         if (cart) {
             let course = this.course;
             let index = cart.courses.findIndex(x => x._id == course._id);
-            if (index >= 0)
+            if (index >= 0) {
                 this.btnCart = 1;
-            else {
+            } else {
                 this.btnCart = 2;
             }
         }
     }
+
     onAddToCart() {
         let username = localStorage.getItem('username');
         if (username) {
@@ -221,12 +232,12 @@ export class CourseDetailsComponent implements OnInit {
             localStorage.setItem('cart', JSON.stringify(cart));
             this.courseSV.isAddedToCart.next(true);
             this.btnCart = 1;
-        }
-        else {
+        } else {
             this.toastrService.error('Bạn cần đăng nhập để thực hiện hành dộng này!!');
         }
 
     }
+
     onRemoveFromCart() {
         let cart = JSON.parse(localStorage.getItem('cart'));
         if (cart) {
@@ -240,23 +251,24 @@ export class CourseDetailsComponent implements OnInit {
     }
 
     recomendCourses = null;
+
     getRecomendCourses() {
         this.courseSV.getAllCourses().pipe(delay(500)).subscribe((res: any) => {
             if (res.success == true) {
                 this.recomendCourses = res['data'];
                 this.loader = false;
             }
-        })
+        });
     }
 
 
     openDialogLesson(video): void {
-        let a = { ...video };
+        let a = {...video};
         a['imageUrl'] = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl + a.imageUrl + this.autoplay);
         this.dialog.open(AppCourseDialogComponent, {
             height: '600px',
             width: '900px',
-            data: { videoUrl: a['imageUrl'] }
+            data: {videoUrl: a['imageUrl']}
         });
     }
 
@@ -265,8 +277,8 @@ export class CourseDetailsComponent implements OnInit {
         this.dialog.open(AppCourseDialogComponent, {
             height: '600px',
             width: '900px',
-            data: { videoUrl: a }
-        })
+            data: {videoUrl: a}
+        });
     }
 }
 

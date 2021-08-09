@@ -70,7 +70,7 @@ import { EditUserComponent } from './components/includes/edit-user/edit-user.com
         MatIconModule,
         ReactiveFormsModule,
         ToastrModule.forRoot({
-            timeOut: 1500,
+            timeOut: 2000,
             positionClass: 'toast-bottom-center',
             preventDuplicates: false,
             progressBar: true,

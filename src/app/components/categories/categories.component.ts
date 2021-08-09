@@ -38,15 +38,15 @@ export class CategoriesComponent implements OnInit {
     ngOnInit() {
         this.getAllCategories();
     }
-    start = 0; end = 6;
+    start = 0; end = 20;
 
     getAllCategories(page = 1) {
         this.courseSV.getAllCategories().pipe(delay(800)).subscribe((res: any) => {
             if (res.success == true && res.data.length > 0) {
                 this.categories = res.data;
                 this.totalResults = res.data.length;
-                this.end = page * 6;
-                this.start = this.end - 6
+                this.end = page * 20;
+                this.start = this.end - 20
                 this.loader = false;
             }
         })

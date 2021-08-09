@@ -17,6 +17,7 @@ export class UserComponent implements OnInit {
 
     ngOnInit() {
         this.courses = JSON.parse(localStorage.getItem('bought'));
+        console.log(this.courses);
         this.user = JSON.parse(localStorage.getItem('fullinfo'));
         this.wallet = JSON.parse(localStorage.getItem('wallet'));
         if (this.user)
