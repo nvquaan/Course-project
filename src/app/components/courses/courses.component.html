@@ -38,7 +38,7 @@
                             <i class="material-icons">play_arrow</i> XEM NGAY
                         </div>
                     </div>
-                    <img [src]="course?.imageUrl" [alt]="course?.name" />
+                    <img style="height: 265px;" [src]="course?.imageUrl" [alt]="course?.name" />
                     <h6>{{ course?.name }}</h6>
                     <p class="rate">
                         <i class="material-icons">star</i><span>{{ course?.rateAvg }}</span> /5
@@ -55,6 +55,6 @@
             <h2>Không có khoá học nào!</h2>
         </div>
     </ng-container>
-    <mat-paginator *ngIf="listCourses.length > 0" [length]="totalResults" [pageSize]="6" (page)="changePage($event)">
+    <mat-paginator *ngIf="listCourses.length > 0" [length]="totalResults" [pageSize]="20" (page)="changePage($event)">
     </mat-paginator>
 </div>

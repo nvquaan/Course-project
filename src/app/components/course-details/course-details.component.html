@@ -110,7 +110,7 @@
                                             {{ course?.language || 'Chưa xác định' }}
                                         </div>
                                     </li>
-                                    <li>
+                                    <li *ngIf="bought">
                                         <div class="label">
                                             Đánh giá của bạn
                                         </div>
@@ -223,10 +223,10 @@
                             <div class="overlay">
                                 <div class="hover"><i class="material-icons">play_arrow</i> PLAY NOW</div>
                             </div>
-                            <img [src]="course.imageUrl">
+                            <img style="height: 265px;" [src]="course.imageUrl">
                             <h6>{{ course?.name }}</h6>
                             <p class="rate"><i class="material-icons">star</i><span>{{course?.rateAvg}}</span>
-                                /10</p>
+                                /5</p>
                             <div class="year"><span>{{course?.createdAt | date: 'yyyy'}}</span></div>
                         </div>
                     </ng-template>

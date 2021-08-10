@@ -49,14 +49,14 @@ export class CoursesComponent implements OnInit {
         })
     }
     listCourses = [];
-    start = 0; end = 6;
+    start = 0; end = 20;
     getAllHotCourses(page = 1) {
         this.courseSV.getAllHotCourses().pipe(delay(800)).subscribe((res: any) => {
             if (res.success == true && res.data.length > 0) {
                 this.listCourses = res['data'];
                 this.totalResults = this.listCourses.length;
-                this.end = page * 6;
-                this.start = this.end - 6
+                this.end = page * 20;
+                this.start = this.end - 20
                 this.loader = false;
             }
         })
@@ -94,7 +94,7 @@ export class CoursesComponent implements OnInit {
     }
 
     filterCourses(value) {
-        
+
         if (!value) {
             this.router.navigate(['/courses']);
         } else {

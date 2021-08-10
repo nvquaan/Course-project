@@ -15,14 +15,10 @@ import {delay} from 'rxjs/internal/operators/delay';
     styleUrls: ['./course-details.component.scss'],
 })
 export class CourseDetailsComponent implements OnInit {
-    public video: boolean;
     movie: any;
     baseUrl = 'https://www.youtube.com/embed/';
     autoplay = '?rel=0;&autoplay=1&mute=0';
-    relatedvideo: any;
-    casts: any = [];
     backdrops: any = [];
-    recomendMovies: any = [];
     responsiveOptions;
     currentRate = 0;
     btnCart: number; // 1: da them vao gio 2: chua them 3: da mua

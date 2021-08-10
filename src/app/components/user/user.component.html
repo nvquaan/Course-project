@@ -32,8 +32,8 @@
                 <ng-container *ngFor="let item of courses">
                     <div *ngIf="item.course" class="course-item d-flex">
                         <div class="col-xl-3">
-                            <div class="course-image">
-                                <img [src]="item.course?.imageUrl" alt=""/>
+                            <div class="course-image h-100">
+                                <img class="h-100" [src]="item.course?.imageUrl" alt=""/>
                             </div>
                         </div>
                         <div class="course-content d-flex justify-content-between">
