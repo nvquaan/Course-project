@@ -60,7 +60,7 @@
   max-width: 1000px;
   margin-bottom: 3rem;
   font-size: 1.5rem;
-  color: $text-color;
+  color: black;
 
   @media (min-width: $breakpoint-large) {
     font-size: 1.6rem;
@@ -70,7 +70,7 @@
 .title {
   margin-bottom: 1rem;
   font-size: 1.8rem;
-  color: #fff;
+  color: black;
   letter-spacing: $letter-spacing;
 
   @media (min-width: $breakpoint-large) {
@@ -81,7 +81,7 @@
 .stats {
   margin-bottom: 3rem;
   font-size: 1.5rem;
-  color: $text-color;
+  color: black;
 
   @media (min-width: $breakpoint-large) {
     font-size: 1.6rem;
@@ -117,7 +117,7 @@
   flex: 1;
   max-width: 180px;
   margin-right: 1.5rem;
-  color: #fff;
+  color: #000;
   margin-bottom: 10px;
 
   @media (min-width: $breakpoint-xsmall) {

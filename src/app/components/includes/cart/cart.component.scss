@@ -8,6 +8,7 @@
     h1 {
         font-size: 36px;
         font-weight: bold;
+        color: black;
     }
 }
 .empty-cart {
@@ -20,7 +21,7 @@
 .course-item {
     margin-bottom: 40px;
     padding: 20px;
-    border: 1px solid rgb(163, 153, 153);
+    border: 1px solid #a73939;
     max-height: 250px;
     position: relative;
     button {
@@ -33,15 +34,16 @@
         flex-grow: 1;
         padding: 20px;
         .content-text {
+            color: black;
             .name {
                 font-weight: bold;
                 font-size: 22px;
-                color: aquamarine;
+                color: #a10606;
             }
             .real-value {
                 font-size: 21px;
                 text-decoration: line-through;
-                color: #a7a7a7;
+                color: #343232;
             }
             .course-value {
                 font-size: 24px;
@@ -52,9 +54,10 @@
 }
 .total-cart {
     padding: 20px;
-    border: 1px solid rgb(163, 153, 153);
+    border: 1px solid #a73939;
     position: sticky;
     top: 20px;
+    color: black;
     .total-value {
         font-size: 30px;
         font-weight: bold;
