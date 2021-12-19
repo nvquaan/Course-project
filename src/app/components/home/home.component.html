@@ -9,7 +9,7 @@
             <strong>Xem tất cả</strong>
         </a>
     </div>
-    
+
     <app-skeleton *ngIf="loader" ></app-skeleton>
     <p-carousel [value]="listCategories" [numVisible]="4" [autoplayInterval]="2000" [numScroll]="1" [circular]="false" *ngIf="!loader"
         [responsiveOptions]="responsiveOptions">
@@ -48,7 +48,7 @@
                 <img [src]="course.imageUrl" style="height: 370px;">
                 <h6>{{ course?.name }}</h6>
                 <p class="rate"><i class="material-icons">star</i><span>{{course?.rateAvg}}</span>/5</p>
-                <p class="cost"><span>💸{{course?.cost | numberWithCommas}}đ</span>
+                <p class="cost"><span>{{course?.cost | numberWithCommas}}đ</span>
             </div>
         </ng-template>
     </p-carousel>

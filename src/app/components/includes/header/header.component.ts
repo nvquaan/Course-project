@@ -62,7 +62,7 @@ export class HeaderComponent implements OnInit {
         }).afterClosed().subscribe(res => {
             if (res) {
                 this.dialog.closeAll();
-                this.toastrService.success('Đăng nhập thành công 😍👌');
+                this.toastrService.success('Đăng nhập thành công');
                 window.location.reload();
                 this.isLoggedIn = true;
             }
@@ -76,14 +76,14 @@ export class HeaderComponent implements OnInit {
         }).afterClosed().subscribe(res => {
             if (res) {
                 this.dialog.closeAll();
-                this.toastrService.success('Đăng ký thành công 😍👌');
+                this.toastrService.success('Đăng ký thành công');
             }
         })
     }
 
     onClickSignOut() {
         localStorage.clear();
-        this.toastrService.success('Bạn đã đăng xuất 😥😥');
+        this.toastrService.success('Bạn đã đăng xuất');
         this.isLoggedIn = false;
         this.router.navigate(['/']);
     }

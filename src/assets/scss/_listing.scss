@@ -48,7 +48,7 @@
 }
 
 .listing-item-style {
-    background-color: #212121;
+    background-color: #c3c1c1;
     color: $base-font-color;
     border-radius: 5px;
     margin: 11px 5px 11px;
@@ -74,7 +74,7 @@
         font-family: Dosis, sans-serif;
         font-weight: 700;
         padding: 2px 2px;
-        color: $base-font-color;
+        color: #000;
         width: auto;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -121,7 +121,7 @@
 
     .cost {
         font-size: 22px;
-        color: #ea7e7e;
+        color: #ff0000;
         text-align: center;
         margin: 0;
         font-weight: 900;
