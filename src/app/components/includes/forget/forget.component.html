@@ -8,7 +8,7 @@
                 <button class="btn-forget" type="submit" (click)="onClickGetVerifyNumber(forgetForm.value)">Lấy mã xác nhận</button>
             </ng-container>
             <ng-container *ngIf="step == 2">
-                <label for="username">Nhập mã xác thực có 4 chữ số</label>
+                <label for="username">Nhập mã xác thực</label>
                 <input type="number" placeholder="Enter number" name="number" required formControlName="verifyNumber" />
                 <button class="btn-forget" type="submit" (click)="onClickConfirmNumber(forgetForm.value)">Xác nhận</button>
             </ng-container>
