@@ -6,6 +6,7 @@ import { UserService } from 'src/app/service/user.service';
 import * as moment from 'moment';
 import { MatDialog } from '@angular/material';
 import { FormConfirmComponent } from '../form-confirm/form-confirm.component';
+import {Router} from '@angular/router';
 @Component({
     selector: 'app-cart',
     templateUrl: './cart.component.html',
@@ -13,7 +14,7 @@ import { FormConfirmComponent } from '../form-confirm/form-confirm.component';
 })
 export class CartComponent implements OnInit {
 
-    constructor(private courseSV: CoursesService, private userService: UserService, private toastrService: ToastrService, private dialog: MatDialog) { }
+    constructor(private courseSV: CoursesService, private userService: UserService, private toastrService: ToastrService, private dialog: MatDialog, private router: Router) { }
     courses = [];
     total;
     wallet;
@@ -75,6 +76,12 @@ export class CartComponent implements OnInit {
                             localStorage.setItem('cart', JSON.stringify(c));
                             this.getCourses();
                             window.location.reload();
+                        } else {
+                            this.toastrService.error(res.message);
+                            this.router.navigate(['/']);
+                            if(res.message == 'Phiên đăng nhập hết hạn') {
+                                setTimeout(() => {window.location.reload();}, 3000);
+                            }
                         }
                     })
                 }

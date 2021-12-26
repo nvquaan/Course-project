@@ -8,6 +8,7 @@ import {HttpParams} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
 import {FormConfirmComponent} from '../includes/form-confirm/form-confirm.component';
 import {delay} from 'rxjs/internal/operators/delay';
+import {LoginComponent} from '../includes/login/login.component';
 
 @Component({
     selector: 'app-course-details',
@@ -151,7 +152,10 @@ export class CourseDetailsComponent implements OnInit {
                             this.toastrService.success('Update vote thành công 👍👍');
                             window.location.reload();
                         } else {
-                            this.toastrService.error('Có lỗi xảy ra 😥');
+                            this.toastrService.error(res.message);
+                            if(res.message == 'Phiên đăng nhập hết hạn') {
+                                setTimeout(() => {window.location.reload();}, 3000);
+                            }
                         }
                     });
                 }
@@ -174,6 +178,11 @@ export class CourseDetailsComponent implements OnInit {
                         if (res.code == 200) {
                             this.toastrService.success('Vote thành công 👍👍');
                             window.location.reload();
+                        } else {
+                            this.toastrService.error(res.message);
+                            if(res.message == 'Phiên đăng nhập hết hạn') {
+                                setTimeout(() => {window.location.reload();}, 3000);
+                            }
                         }
                     });
                 }
