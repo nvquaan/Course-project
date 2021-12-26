@@ -37,6 +37,9 @@ export class EditUserComponent implements OnInit {
     }
 
     onClick(formValue){
+        if(this.isChangePassword && formValue.newPassword.length < 6) {
+            return this.toastrService.error("Mật khẩu phải chứa ít nhất 6 ký tự");
+        }
         this.dialog.open(FormConfirmComponent, {
             height: '600px',
             width: '900px',
@@ -56,7 +59,7 @@ export class EditUserComponent implements OnInit {
                 })
             }
         })
-        
+
     }
     onOpenChangePasswordForm() {
         this.isChangePassword = !this.isChangePassword;

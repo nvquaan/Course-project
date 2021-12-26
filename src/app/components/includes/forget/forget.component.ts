@@ -32,6 +32,9 @@ export class ForgetComponent implements OnInit {
     }
 
     onClickGetVerifyNumber(formValue) {
+        if(formValue.newPassword.length < 6){
+            return this.toastrService.error("Mật khẩu phải chứa ít nhất 6 ký tự");
+        }
         const param = {
             ...formValue,
             step: 1,

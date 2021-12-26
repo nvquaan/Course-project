@@ -5,18 +5,18 @@
             <fieldset>
                 <legend>Thông tin đăng nhập</legend>
                 <label for="username"><b>Tên đăng nhập</b></label>
-                <input type="text" placeholder="Nhập tên đăng nhập" name="username" required formControlName="username">
+                <input type="text" placeholder="Nhập tên đăng nhập" name="username" required formControlName="username" [class.invalid]="wasValidated && signUpForm.get('username')?.errors">
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Nhập email" name="email" required formControlName="email">
+                <input type="text" placeholder="Nhập email" name="email" required formControlName="email" [class.invalid]="wasValidated && signUpForm.get('email')?.errors">
                 <label for="password"><b>Mật khẩu</b></label>
-                <input type="password" placeholder="Nhập mật khẩu" name="password" required formControlName="password">
+                <input type="password" placeholder="Nhập mật khẩu (chứa ít nhất 6 ký tự)" name="password" required formControlName="password" [class.invalid]="wasValidated && signUpForm.get('password')?.errors">
             </fieldset>
             <fieldset>
                 <legend>Thông tin tài khoản</legend>
                 <div class="d-flex mb-3">
                     <div class="d-flex" style="flex: 5;">
                         <label for="fullname"><b>Họ và tên</b></label>
-                        <input type="text" placeholder="Nhập họ tên đầy đủ" name="fullname" formControlName="fullname">
+                        <input type="text" placeholder="Nhập họ tên đầy đủ" name="fullname" formControlName="fullname" [class.invalid]="wasValidated && signUpForm.get('fullname')?.errors">
                     </div>
                     <div class="d-flex justify-content-around flex-2" style="flex: 3;margin-right: -18px;">
                         <div class="d-flex align-items-center">
@@ -32,11 +32,11 @@
                 <div class="d-flex">
                     <div class="d-flex" style="flex: 1">
                         <label for="age"><b>Tuổi</b></label>
-                        <input type="text" placeholder="Nhập tuổi" name="age" formControlName="age">
+                        <input type="text" placeholder="Nhập tuổi" name="age" formControlName="age" [class.invalid]="wasValidated && signUpForm.get('age')?.errors">
                     </div>
                     <div class="d-flex" style="flex: 1">
                         <label class="ml-3" for="phone"><b>Số điện thoại</b></label>
-                        <input type="text" placeholder="Nhập SĐT" name="phone" formControlName="phone">
+                        <input type="text" placeholder="Nhập SĐT" name="phone" formControlName="phone" [class.invalid]="wasValidated && signUpForm.get('phone')?.errors">
                     </div>
                 </div>
             </fieldset>

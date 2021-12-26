@@ -82,3 +82,7 @@ input[type="password"] {
     border: 10px solid #c5aaaa;
     padding-top: 37px;
 }
+
+.invalid {
+    border: 2px solid red !important;
+}
